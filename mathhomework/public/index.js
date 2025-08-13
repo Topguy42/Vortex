@@ -2461,6 +2461,14 @@ document.addEventListener("DOMContentLoaded", () => {
 				// Immediately open about:blank tab when toggled on
 				enableAboutBlankMode();
 			}
+			// Auto-save settings when about:blank mode is toggled
+			saveSettings();
+			showNotification(
+				e.target.checked
+					? "🔒 About:blank mode enabled and saved!"
+					: "🔓 About:blank mode disabled and saved!",
+				"success"
+			);
 		});
 	}
 
