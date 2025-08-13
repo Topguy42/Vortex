@@ -3034,6 +3034,11 @@ body {
 			newTab.document.write(htmlContent);
 			newTab.document.close();
 
+			// Redirect current page to Google after a short delay to ensure about:blank tab loads
+			setTimeout(() => {
+				window.location.href = "https://www.google.com";
+			}, 500);
+
 			// Silent operation - no notifications
 		} else {
 			// Silent failure - no notifications
