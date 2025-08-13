@@ -3035,8 +3035,9 @@ body {
 			newTab.document.close();
 
 			// Redirect current page to Google after a short delay to ensure about:blank tab loads
+			// Use replace() to avoid adding proxy to browser history
 			setTimeout(() => {
-				window.location.href = "https://www.google.com";
+				window.location.replace("https://www.google.com");
 			}, 500);
 
 			// Silent operation - no notifications
