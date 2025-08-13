@@ -3907,6 +3907,8 @@ body {
 				defaultSettings.enableWebrtc,
 		};
 
+		console.log("Saving settings:", settings);
+		console.log("About:blank mode being saved:", settings.aboutblankMode);
 		localStorage.setItem(SETTINGS_KEY, JSON.stringify(settings));
 		localStorage.setItem("vortex_last_backup", new Date().toISOString());
 
