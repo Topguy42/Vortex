@@ -944,7 +944,7 @@ document.addEventListener("DOMContentLoaded", () => {
 				copyPasswordBtn.classList.add("success");
 
 				setTimeout(() => {
-					copyPasswordBtn.textContent = "📋 Copy Password";
+					copyPasswordBtn.textContent = "���� Copy Password";
 					copyPasswordBtn.classList.remove("success");
 				}, 2000);
 			} catch (error) {
@@ -2619,6 +2619,9 @@ document.addEventListener("DOMContentLoaded", () => {
 				? JSON.parse(savedSettings)
 				: defaultSettings;
 
+			console.log("Loading settings:", settings);
+			console.log("About:blank mode from saved settings:", settings.aboutblankMode);
+
 			// Apply settings to form elements
 			applySettingsToUI(settings);
 
@@ -3437,7 +3440,7 @@ body {
 		// Add visual indicator that protection is active
 		const indicator = document.createElement("div");
 		indicator.id = "anti-goguardian-indicator";
-		indicator.innerHTML = "🛡��� Protection Active";
+		indicator.innerHTML = "🛡����� Protection Active";
 		indicator.style.cssText = `
 			position: fixed;
 			top: 10px;
@@ -4200,7 +4203,7 @@ body {
 		// Add subtle protection indicator
 		const protectionIndicator = document.createElement("div");
 		protectionIndicator.id = "protection-indicator";
-		protectionIndicator.innerHTML = "🛡️";
+		protectionIndicator.innerHTML = "����️";
 		protectionIndicator.title = "Anti-extension protection active";
 		protectionIndicator.style.cssText = `
 			position: fixed;
