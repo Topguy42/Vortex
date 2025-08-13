@@ -2453,23 +2453,39 @@ document.addEventListener("DOMContentLoaded", () => {
 	// Load settings on page load
 	loadSettings();
 
-	// Add immediate trigger for about:blank mode
-	const aboutBlankToggle = document.getElementById("aboutblank-mode");
-	if (aboutBlankToggle) {
-		aboutBlankToggle.addEventListener("change", (e) => {
-			if (e.target.checked) {
-				// Immediately open about:blank tab when toggled on
-				enableAboutBlankMode();
-			}
-			// Auto-save settings when about:blank mode is toggled
-			saveSettings();
-			showNotification(
-				e.target.checked
-					? "🔒 About:blank mode enabled and saved!"
-					: "🔓 About:blank mode disabled and saved!",
-				"success"
-			);
-		});
+	// Function to setup about:blank mode toggle
+	function setupAboutBlankToggle() {
+		const aboutBlankToggle = document.getElementById("aboutblank-mode");
+		console.log("Looking for aboutblank-mode element:", aboutBlankToggle);
+
+		if (aboutBlankToggle) {
+			console.log("Found aboutblank-mode element, adding event listener");
+			aboutBlankToggle.addEventListener("change", (e) => {
+				console.log("About:blank toggle changed to:", e.target.checked);
+				if (e.target.checked) {
+					// Immediately open about:blank tab when toggled on
+					enableAboutBlankMode();
+				}
+				// Auto-save settings when about:blank mode is toggled
+				saveSettings();
+				showNotification(
+					e.target.checked
+						? "🔒 About:blank mode enabled and saved!"
+						: "🔓 About:blank mode disabled and saved!",
+					"success"
+				);
+			});
+		} else {
+			console.error("aboutblank-mode element not found!");
+		}
+	}
+
+	// Setup toggle immediately and also after DOM is loaded
+	setupAboutBlankToggle();
+
+	// Also try after DOM is fully loaded in case elements aren't ready yet
+	if (document.readyState === 'loading') {
+		document.addEventListener('DOMContentLoaded', setupAboutBlankToggle);
 	}
 
 	// Add immediate trigger for anti-GoGuardian mode
