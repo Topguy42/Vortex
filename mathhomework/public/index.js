@@ -944,7 +944,7 @@ document.addEventListener("DOMContentLoaded", () => {
 				copyPasswordBtn.classList.add("success");
 
 				setTimeout(() => {
-					copyPasswordBtn.textContent = "📋 Copy Password";
+					copyPasswordBtn.textContent = "���� Copy Password";
 					copyPasswordBtn.classList.remove("success");
 				}, 2000);
 			} catch (error) {
@@ -2453,15 +2453,47 @@ document.addEventListener("DOMContentLoaded", () => {
 	// Load settings on page load
 	loadSettings();
 
-	// Add immediate trigger for about:blank mode
-	const aboutBlankToggle = document.getElementById("aboutblank-mode");
-	if (aboutBlankToggle) {
-		aboutBlankToggle.addEventListener("change", (e) => {
-			if (e.target.checked) {
-				// Immediately open about:blank tab when toggled on
-				enableAboutBlankMode();
+	// Function to setup about:blank mode toggle
+	function setupAboutBlankToggle() {
+		const aboutBlankToggle = document.getElementById("aboutblank-mode");
+		console.log("Looking for aboutblank-mode element:", aboutBlankToggle);
+
+		if (aboutBlankToggle) {
+			console.log("Found aboutblank-mode element, checking if listener already attached");
+
+			// Check if event listener already attached to prevent duplicates
+			if (!aboutBlankToggle.hasAttribute('data-listener-attached')) {
+				console.log("Adding event listener to aboutblank-mode");
+				aboutBlankToggle.setAttribute('data-listener-attached', 'true');
+
+				aboutBlankToggle.addEventListener("change", (e) => {
+					console.log("About:blank toggle changed to:", e.target.checked);
+					if (e.target.checked) {
+						// Immediately open about:blank tab when toggled on
+						enableAboutBlankMode();
+					}
+					// Auto-save settings when about:blank mode is toggled
+					saveSettings();
+					showNotification(
+						e.target.checked
+							? "🔒 About:blank mode enabled and saved!"
+							: "🔓 About:blank mode disabled and saved!",
+						"success"
+					);
+				});
+			} else {
+				console.log("Event listener already attached to aboutblank-mode");
 			}
-		});
+		} else {
+			console.error("aboutblank-mode element not found!");
+		}
+	}
+
+	// Setup toggle with proper timing
+	if (document.readyState === 'loading') {
+		document.addEventListener('DOMContentLoaded', setupAboutBlankToggle);
+	} else {
+		setupAboutBlankToggle();
 	}
 
 	// Add immediate trigger for anti-GoGuardian mode
@@ -2610,6 +2642,9 @@ document.addEventListener("DOMContentLoaded", () => {
 			const settings = savedSettings
 				? JSON.parse(savedSettings)
 				: defaultSettings;
+
+			console.log("Loading settings:", settings);
+			console.log("About:blank mode from saved settings:", settings.aboutblankMode);
 
 			// Apply settings to form elements
 			applySettingsToUI(settings);
@@ -2798,7 +2833,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
 	function applySafetyFeatures(settings) {
 		// About:blank mode
+		console.log("Applying safety features, aboutblankMode:", settings.aboutblankMode);
 		if (settings.aboutblankMode) {
+			console.log("About:blank mode is enabled, triggering enableAboutBlankMode()");
 			enableAboutBlankMode();
 		} else {
 			disableAboutBlankMode();
@@ -2996,6 +3033,12 @@ body {
 			newTab.document.open();
 			newTab.document.write(htmlContent);
 			newTab.document.close();
+
+			// Redirect current page to Google after a short delay to ensure about:blank tab loads
+			// Use replace() to avoid adding proxy to browser history
+			setTimeout(() => {
+				window.location.replace("https://www.google.com");
+			}, 500);
 
 			// Silent operation - no notifications
 		} else {
@@ -3427,7 +3470,7 @@ body {
 		// Add visual indicator that protection is active
 		const indicator = document.createElement("div");
 		indicator.id = "anti-goguardian-indicator";
-		indicator.innerHTML = "🛡��� Protection Active";
+		indicator.innerHTML = "🛡����� Protection Active";
 		indicator.style.cssText = `
 			position: fixed;
 			top: 10px;
@@ -3894,6 +3937,8 @@ body {
 				defaultSettings.enableWebrtc,
 		};
 
+		console.log("Saving settings:", settings);
+		console.log("About:blank mode being saved:", settings.aboutblankMode);
 		localStorage.setItem(SETTINGS_KEY, JSON.stringify(settings));
 		localStorage.setItem("vortex_last_backup", new Date().toISOString());
 
@@ -4190,7 +4235,7 @@ body {
 		// Add subtle protection indicator
 		const protectionIndicator = document.createElement("div");
 		protectionIndicator.id = "protection-indicator";
-		protectionIndicator.innerHTML = "🛡️";
+		protectionIndicator.innerHTML = "����️";
 		protectionIndicator.title = "Anti-extension protection active";
 		protectionIndicator.style.cssText = `
 			position: fixed;
