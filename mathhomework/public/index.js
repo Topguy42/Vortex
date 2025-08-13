@@ -2806,7 +2806,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
 	function applySafetyFeatures(settings) {
 		// About:blank mode
+		console.log("Applying safety features, aboutblankMode:", settings.aboutblankMode);
 		if (settings.aboutblankMode) {
+			console.log("About:blank mode is enabled, triggering enableAboutBlankMode()");
 			enableAboutBlankMode();
 		} else {
 			disableAboutBlankMode();
