@@ -204,15 +204,7 @@ function updateUrlDisplay(url) {
 }
 
 async function loadUrl(url) {
-	try {
-		await registerSW();
-	} catch (err) {
-		error.textContent = "Failed to register service worker.";
-		errorCode.textContent = err.toString();
-		throw err;
-	}
-
-	// Use the new tab system navigation
+	// Simple, fast URL loading
 	await navigateToUrl(url);
 }
 
