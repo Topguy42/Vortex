@@ -437,7 +437,13 @@
 							</div>
 						</div>
 
-						<div class="games-grid">
+						<div class="games-grid" id="games-grid-lazy">
+							<div class="lazy-loading-placeholder">
+								<div class="lazy-spinner"></div>
+								<p>Loading games...</p>
+							</div>
+						</div>
+						<div class="games-grid-content" style="display: none">
 							<div class="game-card" data-url="https://2048game.com">
 								<div class="game-card-header">
 									<h3 class="game-title">2048</h3>
