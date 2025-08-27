@@ -27,16 +27,16 @@ let historyIndex = -1;
 let currentUrl = "";
 
 // Navigate to URL through proxy - optimized for speed
-async function navigateToUrl(url, addToHistoryFlag = true) {
+async function navigateToUrl(url, addToHistoryFlag = true, context = "page") {
 	if (!url) return;
 
 	const frameContainer = document.getElementById("frame-container");
 	const frame = document.getElementById("uv-frame");
 
-	// Show frame container and simple loading
+	// Show frame container and context-aware loading
 	frameContainer.style.display = "flex";
 	document.body.classList.add("frame-active");
-	showLoading(url);
+	showLoading(url, context);
 
 	try {
 		// Quick proxy setup
