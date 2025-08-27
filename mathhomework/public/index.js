@@ -291,7 +291,7 @@ document.addEventListener("DOMContentLoaded", () => {
 			event.preventDefault();
 			const url = item.getAttribute("data-url");
 			if (url) {
-				await loadUrl(url);
+				await loadUrl(url, "quickaccess");
 			}
 		});
 	});
@@ -303,7 +303,7 @@ document.addEventListener("DOMContentLoaded", () => {
 			event.preventDefault();
 			const url = card.getAttribute("data-url");
 			if (url) {
-				await loadUrl(url);
+				await loadUrl(url, "game");
 			}
 		});
 	});
@@ -317,7 +317,7 @@ document.addEventListener("DOMContentLoaded", () => {
 			const card = button.closest(".game-card");
 			const url = card.getAttribute("data-url");
 			if (url) {
-				await loadUrl(url);
+				await loadUrl(url, "game");
 			}
 		});
 	});
