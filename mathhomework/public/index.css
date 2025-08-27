@@ -1424,31 +1424,19 @@ body.light-theme .theme-toggle:hover {
 
 /* Loading Text */
 .loading-title {
-	font-size: 1.5rem;
-	font-weight: 600;
+	font-size: 1.2rem;
+	font-weight: 500;
 	color: var(--text-primary);
 	margin-bottom: 0.5rem;
-	background: var(--gradient-primary);
-	-webkit-background-clip: text;
-	-webkit-text-fill-color: transparent;
-	background-clip: text;
-	animation: titleShimmer 2s ease-in-out infinite alternate;
+	/* Removed complex gradient and animation for speed */
 }
 
-@keyframes titleShimmer {
-	0% {
-		opacity: 0.8;
-	}
-	100% {
-		opacity: 1;
-	}
-}
+/* Removed titleShimmer animation for performance */
 
 .loading-subtitle {
-	font-size: 1rem;
+	font-size: 0.9rem;
 	color: var(--text-secondary);
-	margin-bottom: 2rem;
-	opacity: 0.9;
+	margin-bottom: 0.5rem;
 }
 
 /* Loading Progress */
