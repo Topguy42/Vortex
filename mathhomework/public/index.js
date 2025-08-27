@@ -540,6 +540,14 @@ document.addEventListener("DOMContentLoaded", () => {
 	// Initialize tab system - show proxy tab by default
 	switchTab('proxy');
 
+	// Fix lazy loading - show games content immediately
+	const gamesGrid = document.getElementById('games-grid-lazy');
+	const gamesContent = document.querySelector('.games-grid-content');
+	if (gamesGrid && gamesContent) {
+		gamesGrid.style.display = 'none';
+		gamesContent.style.display = 'grid';
+	}
+
 	// Address bar functionality
 	let isEditingAddress = false;
 
@@ -3410,7 +3418,7 @@ body {
 		};
 
 		img.onerror = (e) => {
-			console.error("❌ Favicon URL failed to load:", url, e);
+			console.error("��� Favicon URL failed to load:", url, e);
 			console.log(
 				"💡 Try using a different URL or check if the site allows external access"
 			);
