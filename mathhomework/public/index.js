@@ -214,9 +214,14 @@ function updateUrlDisplay(url) {
 	}
 }
 
-async function loadUrl(url) {
-	// Simple, fast URL loading
-	await navigateToUrl(url);
+async function loadUrl(url, context = "page") {
+	// Enhanced URL loading with context
+	try {
+		await navigateToUrl(url, true, context);
+	} catch (error) {
+		console.error("Failed to load URL:", error);
+		hideLoading();
+	}
 }
 
 form.addEventListener("submit", async (event) => {
@@ -1484,7 +1489,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 						const blob = await response.blob();
 						const dataUrl = await blobToDataUrl(blob);
-						console.log("��� Successfully fetched through CORS proxy");
+						console.log("✅ Successfully fetched through CORS proxy");
 						setFaviconFromDataUrl(dataUrl);
 						return;
 					} catch (error) {
@@ -2262,7 +2267,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 		if (info.system.webglVendor !== "Blocked") {
 			recommendations.push(
-				"�� Consider blocking WebGL to prevent fingerprinting"
+				"• Consider blocking WebGL to prevent fingerprinting"
 			);
 		}
 
