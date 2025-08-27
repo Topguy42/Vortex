@@ -537,6 +537,9 @@ document.addEventListener("DOMContentLoaded", () => {
 	// Initialize navigation button states
 	updateNavigationButtons();
 
+	// Initialize tab system - show proxy tab by default
+	switchTab('proxy');
+
 	// Address bar functionality
 	let isEditingAddress = false;
 
