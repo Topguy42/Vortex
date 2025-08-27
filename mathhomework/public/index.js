@@ -27,16 +27,16 @@ let historyIndex = -1;
 let currentUrl = "";
 
 // Navigate to URL through proxy - optimized for speed
-async function navigateToUrl(url, addToHistoryFlag = true) {
+async function navigateToUrl(url, addToHistoryFlag = true, context = "page") {
 	if (!url) return;
 
 	const frameContainer = document.getElementById("frame-container");
 	const frame = document.getElementById("uv-frame");
 
-	// Show frame container and simple loading
+	// Show frame container and context-aware loading
 	frameContainer.style.display = "flex";
 	document.body.classList.add("frame-active");
-	showLoading(url);
+	showLoading(url, context);
 
 	try {
 		// Quick proxy setup
@@ -54,9 +54,8 @@ async function navigateToUrl(url, addToHistoryFlag = true) {
 		const finalUrl = search(url, searchEngine);
 		const proxyUrl = __uv$config.prefix + __uv$config.encodeUrl(finalUrl);
 
-		// Set frame source and hide loading immediately
+		// Set frame source but keep loading until it actually loads
 		frame.src = proxyUrl;
-		hideLoading();
 
 		// Update state
 		if (addToHistoryFlag) {
@@ -65,9 +64,21 @@ async function navigateToUrl(url, addToHistoryFlag = true) {
 			updateUrlDisplay(finalUrl);
 		}
 
-		// Simple load handling
-		frame.onload = () => updateNavigationButtons();
-		frame.onerror = () => console.error("Failed to load:", finalUrl);
+		// Handle load events - only hide loading when content actually loads
+		frame.onload = () => {
+			hideLoading();
+			updateNavigationButtons();
+		};
+
+		frame.onerror = () => {
+			hideLoading();
+			console.error("Failed to load:", finalUrl);
+		};
+
+		// Fallback timeout to hide loading if load events don't fire
+		setTimeout(() => {
+			hideLoading();
+		}, 10000); // 10 second timeout
 
 	} catch (err) {
 		console.error("Navigation failed:", err);
@@ -75,8 +86,8 @@ async function navigateToUrl(url, addToHistoryFlag = true) {
 	}
 }
 
-// Simple loading control - optimized for speed
-function showLoading(url = "") {
+// Enhanced loading control with context awareness
+function showLoading(url = "", context = "page") {
 	const loadingOverlay = document.getElementById("loading-overlay");
 	const loadingSubtitle = document.getElementById("loading-subtitle");
 
@@ -84,14 +95,42 @@ function showLoading(url = "") {
 		loadingOverlay.classList.remove("hidden");
 	}
 
-	// Simple loading message
+	// Context-aware loading messages
 	if (loadingSubtitle) {
 		if (url) {
 			try {
 				const urlObj = new URL(url);
-				loadingSubtitle.textContent = `Loading ${urlObj.hostname}...`;
+				let message;
+				switch (context) {
+					case "game":
+						message = `Starting ${urlObj.hostname} game...`;
+						break;
+					case "app":
+						message = `Launching ${urlObj.hostname} app...`;
+						break;
+					case "quickaccess":
+						message = `Opening ${urlObj.hostname}...`;
+						break;
+					default:
+						message = `Loading ${urlObj.hostname}...`;
+				}
+				loadingSubtitle.textContent = message;
 			} catch (e) {
-				loadingSubtitle.textContent = "Loading...";
+				let message;
+				switch (context) {
+					case "game":
+						message = "Starting game...";
+						break;
+					case "app":
+						message = "Launching app...";
+						break;
+					case "quickaccess":
+						message = "Opening site...";
+						break;
+					default:
+						message = "Loading...";
+				}
+				loadingSubtitle.textContent = message;
 			}
 		} else {
 			loadingSubtitle.textContent = "Loading...";
@@ -203,9 +242,14 @@ function updateUrlDisplay(url) {
 	}
 }
 
-async function loadUrl(url) {
-	// Simple, fast URL loading
-	await navigateToUrl(url);
+async function loadUrl(url, context = "page") {
+	// Enhanced URL loading with context
+	try {
+		await navigateToUrl(url, true, context);
+	} catch (error) {
+		console.error("Failed to load URL:", error);
+		hideLoading();
+	}
 }
 
 form.addEventListener("submit", async (event) => {
@@ -247,7 +291,7 @@ document.addEventListener("DOMContentLoaded", () => {
 			event.preventDefault();
 			const url = item.getAttribute("data-url");
 			if (url) {
-				await loadUrl(url);
+				await loadUrl(url, "quickaccess");
 			}
 		});
 	});
@@ -259,7 +303,7 @@ document.addEventListener("DOMContentLoaded", () => {
 			event.preventDefault();
 			const url = card.getAttribute("data-url");
 			if (url) {
-				await loadUrl(url);
+				await loadUrl(url, "game");
 			}
 		});
 	});
@@ -273,7 +317,7 @@ document.addEventListener("DOMContentLoaded", () => {
 			const card = button.closest(".game-card");
 			const url = card.getAttribute("data-url");
 			if (url) {
-				await loadUrl(url);
+				await loadUrl(url, "game");
 			}
 		});
 	});
@@ -297,7 +341,7 @@ document.addEventListener("DOMContentLoaded", () => {
 			event.preventDefault();
 			const url = card.getAttribute("data-url");
 			if (url) {
-				await loadUrl(url);
+				await loadUrl(url, "app");
 			}
 		});
 	});
@@ -311,7 +355,7 @@ document.addEventListener("DOMContentLoaded", () => {
 			const card = button.closest(".app-card");
 			const url = card.getAttribute("data-url");
 			if (url) {
-				await loadUrl(url);
+				await loadUrl(url, "app");
 			}
 		});
 	});
@@ -536,6 +580,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
 	// Initialize navigation button states
 	updateNavigationButtons();
+
+	// Initialize tab system - show proxy tab by default
+	switchTab('proxy');
+
 
 	// Address bar functionality
 	let isEditingAddress = false;
