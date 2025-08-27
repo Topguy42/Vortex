@@ -54,9 +54,8 @@ async function navigateToUrl(url, addToHistoryFlag = true) {
 		const finalUrl = search(url, searchEngine);
 		const proxyUrl = __uv$config.prefix + __uv$config.encodeUrl(finalUrl);
 
-		// Set frame source and hide loading immediately
+		// Set frame source but keep loading until it actually loads
 		frame.src = proxyUrl;
-		hideLoading();
 
 		// Update state
 		if (addToHistoryFlag) {
@@ -65,9 +64,21 @@ async function navigateToUrl(url, addToHistoryFlag = true) {
 			updateUrlDisplay(finalUrl);
 		}
 
-		// Simple load handling
-		frame.onload = () => updateNavigationButtons();
-		frame.onerror = () => console.error("Failed to load:", finalUrl);
+		// Handle load events - only hide loading when content actually loads
+		frame.onload = () => {
+			hideLoading();
+			updateNavigationButtons();
+		};
+
+		frame.onerror = () => {
+			hideLoading();
+			console.error("Failed to load:", finalUrl);
+		};
+
+		// Fallback timeout to hide loading if load events don't fire
+		setTimeout(() => {
+			hideLoading();
+		}, 10000); // 10 second timeout
 
 	} catch (err) {
 		console.error("Navigation failed:", err);
@@ -1473,7 +1484,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 						const blob = await response.blob();
 						const dataUrl = await blobToDataUrl(blob);
-						console.log("✅ Successfully fetched through CORS proxy");
+						console.log("��� Successfully fetched through CORS proxy");
 						setFaviconFromDataUrl(dataUrl);
 						return;
 					} catch (error) {
@@ -2251,7 +2262,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 		if (info.system.webglVendor !== "Blocked") {
 			recommendations.push(
-				"• Consider blocking WebGL to prevent fingerprinting"
+				"�� Consider blocking WebGL to prevent fingerprinting"
 			);
 		}
 
