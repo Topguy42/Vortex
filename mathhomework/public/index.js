@@ -519,8 +519,7 @@ document.addEventListener("DOMContentLoaded", () => {
 		if (loadingOverlay) {
 			loadingOverlay.classList.add("hidden");
 		}
-			clearInterval(progressInterval);
-
+		
 		// Reset browser state
 		browserHistory = [];
 		historyIndex = -1;
@@ -1443,7 +1442,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 					const blob = await response.blob();
 					const dataUrl = await blobToDataUrl(blob);
-					console.log("��� Successfully fetched favicon through proxy");
+					console.log("✅ Successfully fetched favicon through proxy");
 					setFaviconFromDataUrl(dataUrl);
 				} else {
 					throw new Error("UV proxy not available");
