@@ -26,80 +26,52 @@ let browserHistory = [];
 let historyIndex = -1;
 let currentUrl = "";
 
-// Navigate to URL through proxy
+// Navigate to URL through proxy - optimized for speed
 async function navigateToUrl(url, addToHistoryFlag = true) {
 	if (!url) return;
 
 	const frameContainer = document.getElementById("frame-container");
 	const frame = document.getElementById("uv-frame");
 
-	// Show frame container first
+	// Show frame container and simple loading
 	frameContainer.style.display = "flex";
 	document.body.classList.add("frame-active");
-
-	// Show loading animation
 	showLoading(url);
-	setNavigationLoading(true);
 
 	try {
+		// Quick proxy setup
 		await registerSW();
 
-		let wispUrl =
-			(location.protocol === "https:" ? "wss" : "ws") +
-			"://" +
-			location.host +
-			"/wisp/";
+		const wispUrl = (location.protocol === "https:" ? "wss" : "ws") + "://" + location.host + "/wisp/";
 
+		// Only set transport if needed
 		if ((await connection.getTransport()) !== "/epoxy/index.mjs") {
 			await connection.setTransport("/epoxy/index.mjs", [{ wisp: wispUrl }]);
 		}
 
-		// Use the same search logic as the main form
-		const searchEngine =
-			document.getElementById("uv-search-engine")?.value ||
-			"https://www.google.com/search?q=%s";
+		// Process URL and load immediately
+		const searchEngine = document.getElementById("uv-search-engine")?.value || "https://www.google.com/search?q=%s";
 		const finalUrl = search(url, searchEngine);
 		const proxyUrl = __uv$config.prefix + __uv$config.encodeUrl(finalUrl);
 
+		// Set frame source and hide loading immediately
 		frame.src = proxyUrl;
+		hideLoading();
 
+		// Update state
 		if (addToHistoryFlag) {
 			addToHistory(finalUrl);
 		} else {
 			updateUrlDisplay(finalUrl);
 		}
 
-		// Set up frame load event listeners
-		frame.onload = () => {
-			setNavigationLoading(false);
-			hideLoading();
-			// Ensure navigation buttons are updated after load
-			updateNavigationButtons();
-		};
+		// Simple load handling
+		frame.onload = () => updateNavigationButtons();
+		frame.onerror = () => console.error("Failed to load:", finalUrl);
 
-		frame.onerror = () => {
-			setNavigationLoading(false);
-			hideLoading();
-			console.error("Failed to load URL:", finalUrl);
-
-			// Show error in loading overlay briefly
-			const loadingSubtitle = document.getElementById("loading-subtitle");
-			if (loadingSubtitle) {
-				loadingSubtitle.textContent = "Failed to load page";
-				loadingSubtitle.style.color = "var(--error)";
-			}
-		};
 	} catch (err) {
-		console.error("Failed to navigate:", err);
-		setNavigationLoading(false);
+		console.error("Navigation failed:", err);
 		hideLoading();
-
-		// Show error in loading overlay
-		const loadingSubtitle = document.getElementById("loading-subtitle");
-		if (loadingSubtitle) {
-			loadingSubtitle.textContent = "Connection failed";
-			loadingSubtitle.style.color = "var(--error)";
-		}
 	}
 }
 
@@ -138,18 +110,7 @@ function hideLoading() {
 
 // Removed complex step management for faster loading
 
-// Set loading state for navigation
-function setNavigationLoading(isLoading) {
-	const refreshBtn = document.getElementById("tab-refresh");
-
-	if (refreshBtn) {
-		if (isLoading) {
-			refreshBtn.classList.add("loading");
-		} else {
-			refreshBtn.classList.remove("loading");
-		}
-	}
-}
+// Removed setNavigationLoading for simplicity
 
 // Add URL to history
 function addToHistory(url) {
