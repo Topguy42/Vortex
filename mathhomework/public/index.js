@@ -341,7 +341,7 @@ document.addEventListener("DOMContentLoaded", () => {
 			event.preventDefault();
 			const url = card.getAttribute("data-url");
 			if (url) {
-				await loadUrl(url);
+				await loadUrl(url, "app");
 			}
 		});
 	});
@@ -355,7 +355,7 @@ document.addEventListener("DOMContentLoaded", () => {
 			const card = button.closest(".app-card");
 			const url = card.getAttribute("data-url");
 			if (url) {
-				await loadUrl(url);
+				await loadUrl(url, "app");
 			}
 		});
 	});
