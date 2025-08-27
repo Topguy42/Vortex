@@ -26,212 +26,91 @@ let browserHistory = [];
 let historyIndex = -1;
 let currentUrl = "";
 
-// Navigate to URL through proxy
+// Navigate to URL through proxy - optimized for speed
 async function navigateToUrl(url, addToHistoryFlag = true) {
 	if (!url) return;
 
 	const frameContainer = document.getElementById("frame-container");
 	const frame = document.getElementById("uv-frame");
 
-	// Show frame container first
+	// Show frame container and simple loading
 	frameContainer.style.display = "flex";
 	document.body.classList.add("frame-active");
-
-	// Show loading animation
 	showLoading(url);
-	setNavigationLoading(true);
 
 	try {
+		// Quick proxy setup
 		await registerSW();
 
-		let wispUrl =
-			(location.protocol === "https:" ? "wss" : "ws") +
-			"://" +
-			location.host +
-			"/wisp/";
+		const wispUrl = (location.protocol === "https:" ? "wss" : "ws") + "://" + location.host + "/wisp/";
 
+		// Only set transport if needed
 		if ((await connection.getTransport()) !== "/epoxy/index.mjs") {
 			await connection.setTransport("/epoxy/index.mjs", [{ wisp: wispUrl }]);
 		}
 
-		// Use the same search logic as the main form
-		const searchEngine =
-			document.getElementById("uv-search-engine")?.value ||
-			"https://www.google.com/search?q=%s";
+		// Process URL and load immediately
+		const searchEngine = document.getElementById("uv-search-engine")?.value || "https://www.google.com/search?q=%s";
 		const finalUrl = search(url, searchEngine);
 		const proxyUrl = __uv$config.prefix + __uv$config.encodeUrl(finalUrl);
 
+		// Set frame source and hide loading immediately
 		frame.src = proxyUrl;
+		hideLoading();
 
+		// Update state
 		if (addToHistoryFlag) {
 			addToHistory(finalUrl);
 		} else {
 			updateUrlDisplay(finalUrl);
 		}
 
-		// Set up frame load event listeners
-		frame.onload = () => {
-			setNavigationLoading(false);
-			hideLoading();
-			// Ensure navigation buttons are updated after load
-			updateNavigationButtons();
-		};
+		// Simple load handling
+		frame.onload = () => updateNavigationButtons();
+		frame.onerror = () => console.error("Failed to load:", finalUrl);
 
-		frame.onerror = () => {
-			setNavigationLoading(false);
-			hideLoading();
-			console.error("Failed to load URL:", finalUrl);
-
-			// Show error in loading overlay briefly
-			const loadingSubtitle = document.getElementById("loading-subtitle");
-			if (loadingSubtitle) {
-				loadingSubtitle.textContent = "Failed to load page";
-				loadingSubtitle.style.color = "var(--error)";
-			}
-		};
 	} catch (err) {
-		console.error("Failed to navigate:", err);
-		setNavigationLoading(false);
+		console.error("Navigation failed:", err);
 		hideLoading();
-
-		// Show error in loading overlay
-		const loadingSubtitle = document.getElementById("loading-subtitle");
-		if (loadingSubtitle) {
-			loadingSubtitle.textContent = "Connection failed";
-			loadingSubtitle.style.color = "var(--error)";
-		}
 	}
 }
 
-// Loading animation control
-let loadingTimeout;
-let progressInterval;
-let currentStep = 1;
-
+// Simple loading control - optimized for speed
 function showLoading(url = "") {
 	const loadingOverlay = document.getElementById("loading-overlay");
 	const loadingSubtitle = document.getElementById("loading-subtitle");
-	const progressFill = document.getElementById("progress-fill");
-
-	// Reset loading state
-	currentStep = 1;
-	resetLoadingSteps();
 
 	if (loadingOverlay) {
 		loadingOverlay.classList.remove("hidden");
 	}
 
-	// Update subtitle with URL info
+	// Simple loading message
 	if (loadingSubtitle) {
 		if (url) {
 			try {
 				const urlObj = new URL(url);
 				loadingSubtitle.textContent = `Loading ${urlObj.hostname}...`;
 			} catch (e) {
-				loadingSubtitle.textContent = `Loading ${url}...`;
+				loadingSubtitle.textContent = "Loading...";
 			}
 		} else {
-			loadingSubtitle.textContent = "Connecting through Vortex proxy";
+			loadingSubtitle.textContent = "Loading...";
 		}
-	}
-
-	// Start progress animation
-	if (progressFill) {
-		progressFill.style.width = "0%";
-
-		// Simulate loading progress
-		let progress = 0;
-		progressInterval = setInterval(() => {
-			progress += Math.random() * 15;
-			if (progress > 90) progress = 90; // Don't complete until actual load
-			progressFill.style.width = progress + "%";
-
-			// Update steps based on progress
-			if (progress > 30 && currentStep === 1) {
-				updateLoadingStep(2);
-			} else if (progress > 60 && currentStep === 2) {
-				updateLoadingStep(3);
-			}
-		}, 200);
 	}
 }
 
 function hideLoading() {
 	const loadingOverlay = document.getElementById("loading-overlay");
-	const progressFill = document.getElementById("progress-fill");
 
-	// Complete the progress bar
-	if (progressFill) {
-		progressFill.style.width = "100%";
-	}
-
-	// Mark final step as completed
-	updateLoadingStep(3, true);
-
-	// Hide loading overlay after a short delay
-	clearInterval(progressInterval);
-	loadingTimeout = setTimeout(() => {
-		if (loadingOverlay) {
-			loadingOverlay.classList.add("hidden");
-		}
-	}, 500);
-}
-
-function resetLoadingSteps() {
-	for (let i = 1; i <= 3; i++) {
-		const step = document.getElementById(`step-${i}`);
-		if (step) {
-			step.classList.remove("active", "completed");
-		}
-	}
-	// Activate first step
-	const step1 = document.getElementById("step-1");
-	if (step1) {
-		step1.classList.add("active");
+	// Hide immediately for fast experience
+	if (loadingOverlay) {
+		loadingOverlay.classList.add("hidden");
 	}
 }
 
-function updateLoadingStep(stepNumber, completed = false) {
-	// Remove active from current step
-	const currentStepEl = document.getElementById(`step-${currentStep}`);
-	if (currentStepEl) {
-		currentStepEl.classList.remove("active");
-		if (currentStep < stepNumber || completed) {
-			currentStepEl.classList.add("completed");
-		}
-	}
+// Removed complex step management for faster loading
 
-	// Activate new step (unless we're completing the final step)
-	if (!completed || stepNumber < 3) {
-		const newStepEl = document.getElementById(`step-${stepNumber}`);
-		if (newStepEl) {
-			newStepEl.classList.add("active");
-		}
-		currentStep = stepNumber;
-	}
-
-	// If completing final step, mark it as completed
-	if (completed && stepNumber === 3) {
-		const finalStep = document.getElementById(`step-${stepNumber}`);
-		if (finalStep) {
-			finalStep.classList.remove("active");
-			finalStep.classList.add("completed");
-		}
-	}
-}
-
-// Set loading state for navigation
-function setNavigationLoading(isLoading) {
-	const refreshBtn = document.getElementById("tab-refresh");
-
-	if (refreshBtn) {
-		if (isLoading) {
-			refreshBtn.classList.add("loading");
-		} else {
-			refreshBtn.classList.remove("loading");
-		}
-	}
-}
+// Removed setNavigationLoading for simplicity
 
 // Add URL to history
 function addToHistory(url) {
@@ -325,15 +204,7 @@ function updateUrlDisplay(url) {
 }
 
 async function loadUrl(url) {
-	try {
-		await registerSW();
-	} catch (err) {
-		error.textContent = "Failed to register service worker.";
-		errorCode.textContent = err.toString();
-		throw err;
-	}
-
-	// Use the new tab system navigation
+	// Simple, fast URL loading
 	await navigateToUrl(url);
 }
 
@@ -648,9 +519,7 @@ document.addEventListener("DOMContentLoaded", () => {
 		if (loadingOverlay) {
 			loadingOverlay.classList.add("hidden");
 		}
-		clearTimeout(loadingTimeout);
-		clearInterval(progressInterval);
-
+		
 		// Reset browser state
 		browserHistory = [];
 		historyIndex = -1;

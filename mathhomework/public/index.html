@@ -184,15 +184,7 @@
 			</div>
 		</nav>
 
-		<!-- Animated Background -->
-		<div class="background-animation">
-			<div class="floating-orb orb-1"></div>
-			<div class="floating-orb orb-2"></div>
-			<div class="floating-orb orb-3"></div>
-			<div class="floating-orb orb-4"></div>
-			<div class="floating-orb orb-5"></div>
-			<div class="gradient-overlay"></div>
-		</div>
+		<!-- Background animations removed for faster loading -->
 
 		<!-- Main Container -->
 		<div class="main-container">
@@ -445,7 +437,13 @@
 							</div>
 						</div>
 
-						<div class="games-grid">
+						<div class="games-grid" id="games-grid-lazy">
+							<div class="lazy-loading-placeholder">
+								<div class="lazy-spinner"></div>
+								<p>Loading games...</p>
+							</div>
+						</div>
+						<div class="games-grid-content" style="display: none">
 							<div class="game-card" data-url="https://2048game.com">
 								<div class="game-card-header">
 									<h3 class="game-title">2048</h3>
@@ -2459,29 +2457,10 @@
 		<!-- Hidden Frame -->
 		<div id="frame-container" style="display: none">
 			<!-- Loading Overlay -->
-			<div id="loading-overlay" class="loading-overlay">
+			<div id="loading-overlay" class="loading-overlay hidden">
 				<div class="loading-content">
-					<div class="loading-spinner">
-						<div class="spinner-ring"></div>
-						<div class="spinner-ring"></div>
-						<div class="spinner-ring"></div>
-					</div>
-					<div class="loading-text">
-						<h3 class="loading-title">Loading...</h3>
-						<p class="loading-subtitle" id="loading-subtitle">
-							Connecting through Vortex proxy
-						</p>
-					</div>
-					<div class="loading-progress">
-						<div class="progress-bar">
-							<div class="progress-fill" id="progress-fill"></div>
-						</div>
-						<div class="loading-steps">
-							<span class="step active" id="step-1">Initializing</span>
-							<span class="step" id="step-2">Connecting</span>
-							<span class="step" id="step-3">Loading</span>
-						</div>
-					</div>
+					<div class="loading-spinner"></div>
+					<p class="loading-subtitle" id="loading-subtitle">Loading...</p>
 				</div>
 			</div>
 
