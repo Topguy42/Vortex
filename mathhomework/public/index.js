@@ -86,8 +86,8 @@ async function navigateToUrl(url, addToHistoryFlag = true, context = "page") {
 	}
 }
 
-// Simple loading control - optimized for speed
-function showLoading(url = "") {
+// Enhanced loading control with context awareness
+function showLoading(url = "", context = "page") {
 	const loadingOverlay = document.getElementById("loading-overlay");
 	const loadingSubtitle = document.getElementById("loading-subtitle");
 
@@ -95,14 +95,42 @@ function showLoading(url = "") {
 		loadingOverlay.classList.remove("hidden");
 	}
 
-	// Simple loading message
+	// Context-aware loading messages
 	if (loadingSubtitle) {
 		if (url) {
 			try {
 				const urlObj = new URL(url);
-				loadingSubtitle.textContent = `Loading ${urlObj.hostname}...`;
+				let message;
+				switch (context) {
+					case "game":
+						message = `Starting ${urlObj.hostname} game...`;
+						break;
+					case "app":
+						message = `Launching ${urlObj.hostname} app...`;
+						break;
+					case "quickaccess":
+						message = `Opening ${urlObj.hostname}...`;
+						break;
+					default:
+						message = `Loading ${urlObj.hostname}...`;
+				}
+				loadingSubtitle.textContent = message;
 			} catch (e) {
-				loadingSubtitle.textContent = "Loading...";
+				let message;
+				switch (context) {
+					case "game":
+						message = "Starting game...";
+						break;
+					case "app":
+						message = "Launching app...";
+						break;
+					case "quickaccess":
+						message = "Opening site...";
+						break;
+					default:
+						message = "Loading...";
+				}
+				loadingSubtitle.textContent = message;
 			}
 		} else {
 			loadingSubtitle.textContent = "Loading...";
