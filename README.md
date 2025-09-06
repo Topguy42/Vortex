@@ -37,3 +37,8 @@ Vortex is a modern web gateway that routes your internet traffic through proxy s
 - 10+ color themes (Dark, Light, Ocean Blue, Purple, Green, etc.)
 - Animation controls and compact mode
 - Performance optimization settings
+
+### 💜 Discord
+
+- If you would like more information or links feel free to join
+  the vortex discord server https://discord.gg/CWfSsmepxa
