@@ -1,0 +1,2645 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
+		/>
+		<title>Vortex | Fast Web Access</title>
+		<meta
+			name="description"
+			content="Vortex is a cutting-edge web gateway that provides secure and anonymous internet browsing through advanced proxy technology."
+		/>
+		<meta
+			name="keywords"
+			content="proxy, web proxy, vortex, secure browsing, anonymous browsing, web gateway, unblock websites, privacy, internet freedom"
+		/>
+		<meta name="theme-color" content="#6366f1" />
+		<meta name="googlebot" content="index, follow, snippet" />
+		<link rel="icon" type="image/svg+xml" href="favicon.svg" />
+		<link rel="shortcut icon" href="favicon.svg" />
+		<link rel="stylesheet" href="index.css" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+			rel="stylesheet"
+		/>
+		<script src="baremux/index.js" defer></script>
+		<script src="epoxy/index.js" defer></script>
+		<script src="uv/uv.bundle.js" defer></script>
+		<script src="uv/uv.config.js" defer></script>
+		<script src="register-sw.js" defer></script>
+		<script src="search.js" defer></script>
+		<script src="index.js" defer></script>
+	</head>
+
+	<body>
+		<!-- Top Navigation -->
+		<nav class="top-nav">
+			<div class="nav-container">
+				<div class="nav-brand">
+					<div class="nav-logo">
+						<svg
+							viewBox="0 0 24 24"
+							fill="none"
+							xmlns="http://www.w3.org/2000/svg"
+						>
+							<!-- Outer spiral ring -->
+							<path
+								d="M12 2C17.5 2 22 6.5 22 12C22 17.5 17.5 22 12 22C6.5 22 2 17.5 2 12C2 6.5 6.5 2 12 2Z"
+								stroke="white"
+								stroke-width="1"
+								fill="none"
+								opacity="0.3"
+							/>
+
+							<!-- Dynamic spiral -->
+							<path
+								d="M12 4C16.4 4 20 7.6 20 12C20 13.8 19.4 15.4 18.4 16.7L16.8 15.1C17.5 14.2 17.9 13.1 17.9 12C17.9 8.7 15.3 6.1 12 6.1C8.7 6.1 6.1 8.7 6.1 12C6.1 15.3 8.7 17.9 12 17.9C13.4 17.9 14.7 17.4 15.7 16.5L17.3 18.1C15.8 19.3 14 20 12 20C7.6 20 4 16.4 4 12C4 7.6 7.6 4 12 4Z"
+								fill="white"
+								opacity="0.9"
+							/>
+
+							<!-- Inner vortex spiral -->
+							<path
+								d="M12 7C14.8 7 17 9.2 17 12C17 13.2 16.5 14.3 15.7 15.1L14.3 13.7C14.7 13.2 15 12.6 15 12C15 10.3 13.7 9 12 9C10.3 9 9 10.3 9 12C9 13.7 10.3 15 12 15C12.8 15 13.5 14.6 14 14L15.4 15.4C14.6 16.4 13.4 17 12 17C9.2 17 7 14.8 7 12C7 9.2 9.2 7 12 7Z"
+								fill="white"
+								opacity="0.7"
+							/>
+
+							<!-- Center core -->
+							<circle cx="12" cy="12" r="2.5" fill="white" opacity="0.95" />
+
+							<!-- Inner glow -->
+							<circle cx="12" cy="12" r="1.5" fill="white" opacity="0.6" />
+						</svg>
+					</div>
+					<div class="nav-brand-content">
+						<span class="nav-brand-text">Vortex</span>
+						<span class="nav-tagline">Fast Web Access</span>
+					</div>
+				</div>
+
+				<div class="nav-tabs">
+					<a href="#" class="nav-tab active" data-tab="proxy">
+						<svg
+							viewBox="0 0 24 24"
+							fill="currentColor"
+							xmlns="http://www.w3.org/2000/svg"
+						>
+							<circle
+								cx="12"
+								cy="12"
+								r="10"
+								stroke="currentColor"
+								stroke-width="2"
+								fill="none"
+							/>
+							<path
+								d="M2 12h20M12 2a15.3 15.3 0 0 1 0 20 15.3 15.3 0 0 1 0-20"
+								stroke="currentColor"
+								stroke-width="1.5"
+								fill="none"
+							/>
+						</svg>
+						Proxy
+					</a>
+					<a href="#" class="nav-tab" data-tab="games">
+						<svg
+							viewBox="0 0 24 24"
+							fill="currentColor"
+							xmlns="http://www.w3.org/2000/svg"
+						>
+							<path
+								d="M12 2L14.5 8.5L22 9.5L16.5 14L18 22L12 18.5L6 22L7.5 14L2 9.5L9.5 8.5L12 2Z"
+							/>
+						</svg>
+						Games
+					</a>
+					<a href="#" class="nav-tab" data-tab="apps">
+						<svg
+							viewBox="0 0 24 24"
+							fill="currentColor"
+							xmlns="http://www.w3.org/2000/svg"
+						>
+							<path
+								d="M4 4h4v4H4V4zm6 0h4v4h-4V4zm6 0h4v4h-4V4zM4 10h4v4H4v-4zm6 0h4v4h-4v-4zm6 0h4v4h-4v-4zM4 16h4v4H4v-4zm6 0h4v4h-4v-4zm6 0h4v4h-4v-4z"
+							/>
+						</svg>
+						Apps
+					</a>
+					<a href="#" class="nav-tab" data-tab="tools">
+						<svg
+							viewBox="0 0 24 24"
+							fill="currentColor"
+							xmlns="http://www.w3.org/2000/svg"
+						>
+							<path
+								d="M22.7 19l-9.1-9.1c.9-2.3.4-5-1.5-6.9-2-2-5-2.4-7.4-1.3L9 6 6 9 1.6 4.7C.4 7.1.9 10.1 2.9 12.1c1.9 1.9 4.6 2.4 6.9 1.5l9.1 9.1c.4.4 1 .4 1.4 0l2.3-2.3c.5-.4.5-1.1.1-1.4z"
+							/>
+						</svg>
+						Tools
+					</a>
+					<a href="#" class="nav-tab" data-tab="settings">
+						<svg
+							viewBox="0 0 24 24"
+							fill="none"
+							xmlns="http://www.w3.org/2000/svg"
+						>
+							<path
+								d="M19.14,12.94c0.04-0.3,0.06-0.61,0.06-0.94c0-0.32-0.02-0.64-0.07-0.94l2.03-1.58c0.18-0.14,0.23-0.41,0.12-0.61 l-1.92-3.32c-0.12-0.22-0.37-0.29-0.59-0.22l-2.39,0.96c-0.5-0.38-1.03-0.7-1.62-0.94L14.4,2.81c-0.04-0.24-0.24-0.41-0.48-0.41 h-3.84c-0.24,0-0.43,0.17-0.47,0.41L9.25,5.35C8.66,5.59,8.12,5.92,7.63,6.29L5.24,5.33c-0.22-0.08-0.47,0-0.59,0.22L2.74,8.87 C2.62,9.08,2.66,9.34,2.86,9.48l2.03,1.58C4.84,11.36,4.8,11.69,4.8,12s0.02,0.64,0.07,0.94l-2.03,1.58 c-0.18,0.14-0.23,0.41-0.12,0.61l1.92,3.32c0.12,0.22,0.37,0.29,0.59,0.22l2.39-0.96c0.5,0.38,1.03,0.7,1.62,0.94l0.36,2.54 c0.05,0.24,0.24,0.41,0.48,0.41h3.84c0.24,0,0.44-0.17,0.47-0.41l0.36-2.54c0.59-0.24,1.13-0.56,1.62-0.94l2.39,0.96 c0.22,0.08,0.47,0,0.59-0.22l1.92-3.32c0.12-0.22,0.07-0.47-0.12-0.61L19.14,12.94z M12,15.6c-1.98,0-3.6-1.62-3.6-3.6 s1.62-3.6,3.6-3.6s3.6,1.62,3.6,3.6S13.98,15.6,12,15.6z"
+							/>
+							<path
+								d="M19.4 15C19.2669 15.3016 19.2272 15.6362 19.286 15.9606C19.3448 16.285 19.4995 16.5843 19.73 16.82L19.79 16.88C19.976 17.0657 20.1235 17.2863 20.2241 17.5291C20.3248 17.7719 20.3766 18.0322 20.3766 18.295C20.3766 18.5578 20.3248 18.8181 20.2241 19.0609C20.1235 19.3037 19.976 19.5243 19.79 19.71C19.6043 19.896 19.3837 20.0435 19.1409 20.1441C18.8981 20.2448 18.6378 20.2966 18.375 20.2966C18.1122 20.2966 17.8519 20.2448 17.6091 20.1441C17.3663 20.0435 17.1457 19.896 16.96 19.71L16.9 19.65C16.6643 19.4195 16.365 19.2648 16.0406 19.206C15.7162 19.1472 15.3816 19.1869 15.08 19.32C14.7842 19.4468 14.532 19.6572 14.3543 19.9255C14.1766 20.1938 14.0813 20.5082 14.08 20.83V21C14.08 21.5304 13.8693 22.0391 13.4942 22.4142C13.1191 22.7893 12.6104 23 12.08 23C11.5496 23 11.0409 22.7893 10.6658 22.4142C10.2907 22.0391 10.08 21.5304 10.08 21V20.91C10.0723 20.579 9.96512 20.2569 9.77251 19.9859C9.5799 19.7148 9.31074 19.5063 9 19.385C8.69838 19.2519 8.36381 19.2122 8.03941 19.271C7.71502 19.3298 7.41568 19.4845 7.18 19.715L7.12 19.775C6.93425 19.961 6.71368 20.1085 6.47088 20.2091C6.22808 20.3098 5.96783 20.3616 5.705 20.3616C5.44217 20.3616 5.18192 20.3098 4.93912 20.2091C4.69632 20.1085 4.47575 19.961 4.29 19.775C4.10405 19.5893 3.95653 19.3687 3.85588 19.1259C3.75523 18.8831 3.70343 18.6228 3.70343 18.36C3.70343 18.0972 3.75523 17.8369 3.85588 17.5941C3.95653 17.3513 4.10405 17.1307 4.29 16.945L4.35 16.885C4.58054 16.6493 4.73519 16.35 4.794 16.0256C4.85282 15.7012 4.81312 15.3666 4.68 15.065C4.55324 14.7692 4.34276 14.517 4.07447 14.3393C3.80618 14.1616 3.49179 14.0663 3.17 14.065H3C2.46957 14.065 1.96086 13.8543 1.58579 13.4792C1.21071 13.1041 1 12.5954 1 12.065C1 11.5346 1.21071 11.0259 1.58579 10.6508C1.96086 10.2757 2.46957 10.065 3 10.065H3.09C3.42099 10.0573 3.742 9.95012 4.01309 9.75751C4.28417 9.5649 4.49268 9.29574 4.615 8.985C4.74812 8.68338 4.78782 8.34881 4.729 8.02441C4.67019 7.70002 4.51553 7.40068 4.285 7.165L4.225 7.105C4.03905 6.91925 3.89153 6.69868 3.79088 6.45588C3.69023 6.21308 3.63843 5.95283 3.63843 5.69C3.63843 5.42717 3.69023 5.16692 3.79088 4.92412C3.89153 4.68132 4.03905 4.46075 4.225 4.275C4.41075 4.08905 4.63132 3.94153 4.87412 3.84088C5.11692 3.74023 5.37717 3.68843 5.64 3.68843C5.90283 3.68843 6.16308 3.74023 6.40588 3.84088C6.64868 3.94153 6.86925 4.08905 7.055 4.275L7.115 4.335C7.35068 4.56554 7.65002 4.72019 7.97441 4.779C8.29881 4.83782 8.63338 4.79812 8.935 4.665H9C9.29576 4.53824 9.54799 4.32776 9.72569 4.05947C9.90338 3.79118 9.99871 3.47679 10 3.155V3C10 2.46957 10.2107 1.96086 10.5858 1.58579C10.9609 1.21071 11.4696 1 12 1C12.5304 1 13.0391 1.21071 13.4142 1.58579C13.7893 1.96086 14 2.46957 14 3V3.09C14.0013 3.41179 14.0966 3.72618 14.2743 3.99447C14.452 4.26276 14.7042 4.47324 15 4.6C15.3016 4.73312 15.6362 4.77282 15.9606 4.714C16.285 4.65519 16.5843 4.50054 16.82 4.27L16.88 4.21C17.0657 4.02405 17.2863 3.87653 17.5291 3.77588C17.7719 3.67523 18.0322 3.62343 18.295 3.62343C18.5578 3.62343 18.8181 3.67523 19.0609 3.77588C19.3037 3.87653 19.5243 4.02405 19.71 4.21C19.896 4.39575 20.0435 4.61632 20.1441 4.85912C20.2448 5.10192 20.2966 5.36217 20.2966 5.625C20.2966 5.88783 20.2448 6.14808 20.1441 6.39088C20.0435 6.63368 19.896 6.85425 19.71 7.04L19.65 7.1C19.4195 7.33568 19.2648 7.63502 19.206 7.95941C19.1472 8.28381 19.1869 8.61838 19.32 8.92V9C19.4468 9.29576 19.6572 9.54799 19.9255 9.72569C20.1938 9.90338 20.5082 9.99871 20.83 10H21C21.5304 10 22.0391 10.2107 22.4142 10.5858C22.7893 10.9609 23 11.4696 23 12C23 12.5304 22.7893 13.0391 22.4142 13.4142C22.0391 13.7893 21.5304 14 21 14H20.91C20.5882 14.0013 20.2738 14.0966 20.0055 14.2743C19.7372 14.452 19.5268 14.7042 19.4 15V15Z"
+								stroke="currentColor"
+								stroke-width="2"
+								stroke-linecap="round"
+								stroke-linejoin="round"
+							/>
+						</svg>
+						Settings
+					</a>
+				</div>
+
+				<div class="nav-actions">
+					<button class="theme-toggle" aria-label="Toggle dark mode">
+						<svg
+							viewBox="0 0 24 24"
+							fill="none"
+							xmlns="http://www.w3.org/2000/svg"
+						>
+							<path
+								d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"
+								stroke="currentColor"
+								stroke-width="2"
+								stroke-linecap="round"
+								stroke-linejoin="round"
+							/>
+						</svg>
+					</button>
+				</div>
+			</div>
+		</nav>
+
+		<!-- Animated Background -->
+		<div class="background-animation">
+			<div class="floating-orb orb-1"></div>
+			<div class="floating-orb orb-2"></div>
+			<div class="floating-orb orb-3"></div>
+			<div class="floating-orb orb-4"></div>
+			<div class="floating-orb orb-5"></div>
+			<div class="gradient-overlay"></div>
+		</div>
+
+		<!-- Main Container -->
+		<div class="main-container">
+			<!-- Proxy Section -->
+			<div id="proxy-section" class="tab-section">
+				<!-- Header Section -->
+				<header class="header-section">
+					<div class="brand-logo">
+						<h1 class="brand-title">Vortex</h1>
+					</div>
+				</header>
+
+				<!-- Search Section -->
+				<section class="search-section">
+					<div class="search-container">
+						<form id="uv-form" class="search-form">
+							<input
+								id="uv-search-engine"
+								value="https://www.google.com/search?q=%s"
+								type="hidden"
+							/>
+							<div class="input-container">
+								<div class="input-icon">
+									<svg
+										viewBox="0 0 24 24"
+										fill="none"
+										xmlns="http://www.w3.org/2000/svg"
+									>
+										<path
+											d="M21 21L16.514 16.506L21 21ZM19 10.5C19 15.194 15.194 19 10.5 19C5.806 19 2 15.194 2 10.5C2 5.806 5.806 2 10.5 2C15.194 2 19 5.806 19 10.5Z"
+											stroke="currentColor"
+											stroke-width="2"
+											stroke-linecap="round"
+											stroke-linejoin="round"
+										/>
+									</svg>
+								</div>
+								<input
+									id="uv-address"
+									type="text"
+									placeholder="Enter URL or search term..."
+									autocomplete="off"
+									spellcheck="false"
+								/>
+								<button type="submit" class="search-button">
+									<span>Go</span>
+									<svg
+										viewBox="0 0 24 24"
+										fill="none"
+										xmlns="http://www.w3.org/2000/svg"
+									>
+										<path
+											d="M5 12H19M19 12L12 5M19 12L12 19"
+											stroke="currentColor"
+											stroke-width="2"
+											stroke-linecap="round"
+											stroke-linejoin="round"
+										/>
+									</svg>
+								</button>
+							</div>
+						</form>
+
+						<div class="error-container">
+							<p id="uv-error" class="error-message"></p>
+							<pre id="uv-error-code" class="error-code"></pre>
+						</div>
+					</div>
+				</section>
+
+				<!-- Quick Access Section -->
+				<section class="quick-access-section">
+					<div class="quick-access-container">
+						<h2 class="quick-access-title">Quick Access</h2>
+						<p class="quick-access-description">
+							Jump to your favorite websites instantly
+						</p>
+
+						<div class="quick-access-grid">
+							<a
+								href="#"
+								class="quick-access-item"
+								data-url="https://youtube.com"
+							>
+								<div class="quick-access-icon youtube">
+									<svg
+										viewBox="0 0 24 24"
+										fill="currentColor"
+										xmlns="http://www.w3.org/2000/svg"
+									>
+										<path
+											d="M23.498 6.186c-.276-1.062-1.09-1.9-2.132-2.181C19.506 3.546 12 3.546 12 3.546s-7.506 0-9.366.459c-1.042.281-1.856 1.119-2.132 2.181C0 8.074 0 12 0 12s0 3.926.502 5.814c.276 1.062 1.09 1.9 2.132 2.181C4.494 20.454 12 20.454 12 20.454s7.506 0 9.366-.459c1.042-.281 1.856-1.119 2.132-2.181C24 15.926 24 12 24 12s0-3.926-.502-5.814zM9.75 15.02V8.98L15.5 12l-5.75 3.02z"
+										/>
+									</svg>
+								</div>
+								<span class="quick-access-label">YouTube</span>
+							</a>
+
+							<a
+								href="#"
+								class="quick-access-item"
+								data-url="https://reddit.com"
+							>
+								<div class="quick-access-icon reddit">
+									<svg
+										viewBox="0 0 24 24"
+										fill="currentColor"
+										xmlns="http://www.w3.org/2000/svg"
+									>
+										<path
+											d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968 0 1.754.786 1.754 1.754 0 .716-.435 1.333-1.01 1.614a3.111 3.111 0 0 1 .042.52c0 2.694-3.13 4.87-7.004 4.87-3.874 0-7.004-2.176-7.004-4.87 0-.183.015-.366.043-.534A1.748 1.748 0 0 1 4.028 12c0-.968.786-1.754 1.754-1.754.463 0 .898.196 1.207.49 1.207-.883 2.878-1.43 4.744-1.487l.885-4.182a.342.342 0 0 1 .14-.197.35.35 0 0 1 .238-.042l2.906.617a1.214 1.214 0 0 1 1.108-.701zM9.25 12C8.561 12 8 12.562 8 13.25c0 .687.561 1.248 1.25 1.248.687 0 1.248-.561 1.248-1.249 0-.688-.561-1.249-1.249-1.249zm5.5 0c-.687 0-1.248.561-1.248 1.25 0 .687.561 1.248 1.249 1.248.688 0 1.249-.561 1.249-1.249 0-.687-.562-1.249-1.25-1.249zm-5.466 3.99a.327.327 0 0 0-.231.094.33.33 0 0 0 0 .463c.842.842 2.484.913 2.961.913.477 0 2.105-.056 2.961-.913a.361.361 0 0 0 .029-.463.33.33 0 0 0-.464 0c-.547.533-1.684.73-2.512.73-.828 0-1.979-.196-2.512-.73a.326.326 0 0 0-.232-.095z"
+										/>
+									</svg>
+								</div>
+								<span class="quick-access-label">Reddit</span>
+							</a>
+
+							<a
+								href="#"
+								class="quick-access-item"
+								data-url="https://discord.com"
+							>
+								<div class="quick-access-icon discord">
+									<svg
+										viewBox="0 0 24 24"
+										fill="currentColor"
+										xmlns="http://www.w3.org/2000/svg"
+									>
+										<path
+											d="M20.317 4.37c-1.53-.69-3.17-1.2-4.885-1.47a.075.075 0 0 0-.079.036c-.21.369-.444.85-.608 1.23a18.566 18.566 0 0 0-5.487 0 12.36 12.36 0 0 0-.617-1.23A.077.077 0 0 0 8.562 2.9c-1.714.27-3.354.78-4.885 1.47a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 2.98.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-2.981.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"
+										/>
+									</svg>
+								</div>
+								<span class="quick-access-label">Discord</span>
+							</a>
+
+							<a
+								href="#"
+								class="quick-access-item"
+								data-url="https://github.com"
+							>
+								<div class="quick-access-icon github">
+									<svg
+										viewBox="0 0 24 24"
+										fill="currentColor"
+										xmlns="http://www.w3.org/2000/svg"
+									>
+										<path
+											d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"
+										/>
+									</svg>
+								</div>
+								<span class="quick-access-label">GitHub</span>
+							</a>
+
+							<a
+								href="#"
+								class="quick-access-item"
+								data-url="https://instagram.com"
+							>
+								<div class="quick-access-icon instagram">
+									<svg
+										viewBox="0 0 24 24"
+										fill="currentColor"
+										xmlns="http://www.w3.org/2000/svg"
+									>
+										<path
+											d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"
+										/>
+									</svg>
+								</div>
+								<span class="quick-access-label">Instagram</span>
+							</a>
+
+							<a
+								href="#"
+								class="quick-access-item"
+								data-url="https://tiktok.com"
+							>
+								<div class="quick-access-icon tiktok">
+									<svg
+										viewBox="0 0 24 24"
+										fill="currentColor"
+										xmlns="http://www.w3.org/2000/svg"
+									>
+										<path
+											d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"
+										/>
+									</svg>
+								</div>
+								<span class="quick-access-label">TikTok</span>
+							</a>
+						</div>
+					</div>
+				</section>
+			</div>
+
+			<!-- Games Section -->
+			<div id="games-section" class="tab-section" style="display: none">
+				<section class="games-section">
+					<div class="games-container">
+						<h2 class="games-title">Popular Games</h2>
+						<p class="games-description">
+							Play your favorite games directly through our proxy
+						</p>
+
+						<div class="games-search-container">
+							<div class="games-search-bar">
+								<div class="games-search-icon">
+									<svg
+										viewBox="0 0 24 24"
+										fill="none"
+										xmlns="http://www.w3.org/2000/svg"
+									>
+										<path
+											d="M21 21L16.514 16.506L21 21ZM19 10.5C19 15.194 15.194 19 10.5 19C5.806 19 2 15.194 2 10.5C2 5.806 5.806 2 10.5 2C15.194 2 19 5.806 19 10.5Z"
+											stroke="currentColor"
+											stroke-width="2"
+											stroke-linecap="round"
+											stroke-linejoin="round"
+										/>
+									</svg>
+								</div>
+								<input
+									id="games-search"
+									type="text"
+									placeholder="Search games by name, category, or description..."
+									autocomplete="off"
+									spellcheck="false"
+								/>
+								<div
+									class="games-search-clear"
+									id="games-search-clear"
+									style="display: none"
+								>
+									<svg
+										viewBox="0 0 24 24"
+										fill="none"
+										xmlns="http://www.w3.org/2000/svg"
+									>
+										<path
+											d="M18 6L6 18M6 6L18 18"
+											stroke="currentColor"
+											stroke-width="2"
+											stroke-linecap="round"
+											stroke-linejoin="round"
+										/>
+									</svg>
+								</div>
+							</div>
+						</div>
+
+						<div class="games-grid">
+							<div class="game-card" data-url="https://2048game.com">
+								<div class="game-card-header">
+									<h3 class="game-title">2048</h3>
+									<span class="game-category">Puzzle</span>
+								</div>
+								<p class="game-description">Number puzzle game</p>
+								<div class="game-rating">
+									<span class="star">★</span>
+									<span class="rating-value">4.8</span>
+									<span class="rating-label">rating</span>
+								</div>
+								<button class="play-button">
+									<span class="play-icon">▶</span>
+									Play Now
+								</button>
+							</div>
+
+							<div
+								class="game-card"
+								data-url="https://slope-game.github.io/slope/"
+							>
+								<div class="game-card-header">
+									<h3 class="game-title">Slope</h3>
+									<span class="game-category">Action</span>
+								</div>
+								<p class="game-description">3D running game</p>
+								<div class="game-rating">
+									<span class="star">★</span>
+									<span class="rating-value">4.7</span>
+									<span class="rating-label">rating</span>
+								</div>
+								<button class="play-button">
+									<span class="play-icon">▶</span>
+									Play Now
+								</button>
+							</div>
+
+							<div
+								class="game-card"
+								data-url="https://www.google.com/fbx?fbx=snake_arcade"
+							>
+								<div class="game-card-header">
+									<h3 class="game-title">Snake</h3>
+									<span class="game-category">Arcade</span>
+								</div>
+								<p class="game-description">Classic snake game</p>
+								<div class="game-rating">
+									<span class="star">★</span>
+									<span class="rating-value">4.6</span>
+									<span class="rating-label">rating</span>
+								</div>
+								<button class="play-button">
+									<span class="play-icon">▶</span>
+									Play Now
+								</button>
+							</div>
+
+							<div class="game-card" data-url="https://tetris.com/play-tetris">
+								<div class="game-card-header">
+									<h3 class="game-title">Tetris</h3>
+									<span class="game-category">Puzzle</span>
+								</div>
+								<p class="game-description">Block puzzle classic</p>
+								<div class="game-rating">
+									<span class="star">★</span>
+									<span class="rating-value">4.9</span>
+									<span class="rating-label">rating</span>
+								</div>
+								<button class="play-button">
+									<span class="play-icon">▶</span>
+									Play Now
+								</button>
+							</div>
+
+							<div class="game-card" data-url="https://flappybird.io">
+								<div class="game-card-header">
+									<h3 class="game-title">Flappy Bird</h3>
+									<span class="game-category">Arcade</span>
+								</div>
+								<p class="game-description">Side-scrolling mobile game</p>
+								<div class="game-rating">
+									<span class="star">★</span>
+									<span class="rating-value">4.5</span>
+									<span class="rating-label">rating</span>
+								</div>
+								<button class="play-button">
+									<span class="play-icon">▶</span>
+									Play Now
+								</button>
+							</div>
+
+							<div class="game-card" data-url="https://krunker.io">
+								<div class="game-card-header">
+									<h3 class="game-title">Krunker</h3>
+									<span class="game-category">Action</span>
+								</div>
+								<p class="game-description">Fast-paced FPS shooter</p>
+								<div class="game-rating">
+									<span class="star">★</span>
+									<span class="rating-value">4.4</span>
+									<span class="rating-label">rating</span>
+								</div>
+								<button class="play-button">
+									<span class="play-icon">▶</span>
+									Play Now
+								</button>
+							</div>
+
+							<div class="game-card" data-url="https://wordle.today">
+								<div class="game-card-header">
+									<h3 class="game-title">Wordle</h3>
+									<span class="game-category">Puzzle</span>
+								</div>
+								<p class="game-description">Daily word puzzle game</p>
+								<div class="game-rating">
+									<span class="star">★</span>
+									<span class="rating-value">4.7</span>
+									<span class="rating-label">rating</span>
+								</div>
+								<button class="play-button">
+									<span class="play-icon">▶</span>
+									Play Now
+								</button>
+							</div>
+
+							<div class="game-card" data-url="https://agario.com">
+								<div class="game-card-header">
+									<h3 class="game-title">Agar.io</h3>
+									<span class="game-category">Multiplayer</span>
+								</div>
+								<p class="game-description">Cell eating survival game</p>
+								<div class="game-rating">
+									<span class="star">★</span>
+									<span class="rating-value">4.3</span>
+									<span class="rating-label">rating</span>
+								</div>
+								<button class="play-button">
+									<span class="play-icon">▶</span>
+									Play Now
+								</button>
+							</div>
+
+							<div class="game-card" data-url="https://slither.io">
+								<div class="game-card-header">
+									<h3 class="game-title">Slither.io</h3>
+									<span class="game-category">Multiplayer</span>
+								</div>
+								<p class="game-description">Snake multiplayer battle</p>
+								<div class="game-rating">
+									<span class="star">★</span>
+									<span class="rating-value">4.2</span>
+									<span class="rating-label">rating</span>
+								</div>
+								<button class="play-button">
+									<span class="play-icon">▶</span>
+									Play Now
+								</button>
+							</div>
+
+							<div class="game-card" data-url="https://dino-chrome.com">
+								<div class="game-card-header">
+									<h3 class="game-title">Chrome Dino</h3>
+									<span class="game-category">Arcade</span>
+								</div>
+								<p class="game-description">Endless runner game</p>
+								<div class="game-rating">
+									<span class="star">★</span>
+									<span class="rating-value">4.6</span>
+									<span class="rating-label">rating</span>
+								</div>
+								<button class="play-button">
+									<span class="play-icon">▶</span>
+									Play Now
+								</button>
+							</div>
+
+							<div class="game-card" data-url="https://pacman.com">
+								<div class="game-card-header">
+									<h3 class="game-title">Pac-Man</h3>
+									<span class="game-category">Arcade</span>
+								</div>
+								<p class="game-description">Classic maze arcade game</p>
+								<div class="game-rating">
+									<span class="star">★</span>
+									<span class="rating-value">4.8</span>
+									<span class="rating-label">rating</span>
+								</div>
+								<button class="play-button">
+									<span class="play-icon">▶</span>
+									Play Now
+								</button>
+							</div>
+
+							<div class="game-card" data-url="https://paperio2.io">
+								<div class="game-card-header">
+									<h3 class="game-title">Paper.io 2</h3>
+									<span class="game-category">Strategy</span>
+								</div>
+								<p class="game-description">Territory conquering game</p>
+								<div class="game-rating">
+									<span class="star">★</span>
+									<span class="rating-value">4.1</span>
+									<span class="rating-label">rating</span>
+								</div>
+								<button class="play-button">
+									<span class="play-icon">��</span>
+									Play Now
+								</button>
+							</div>
+
+							<div class="game-card" data-url="https://hole-io.com">
+								<div class="game-card-header">
+									<h3 class="game-title">Hole.io</h3>
+									<span class="game-category">Action</span>
+								</div>
+								<p class="game-description">Black hole swallowing game</p>
+								<div class="game-rating">
+									<span class="star">★</span>
+									<span class="rating-value">4.0</span>
+									<span class="rating-label">rating</span>
+								</div>
+								<button class="play-button">
+									<span class="play-icon">▶</span>
+									Play Now
+								</button>
+							</div>
+
+							<div class="game-card" data-url="https://curvefever.pro">
+								<div class="game-card-header">
+									<h3 class="game-title">Curve Fever</h3>
+									<span class="game-category">Multiplayer</span>
+								</div>
+								<p class="game-description">Snake-like competitive game</p>
+								<div class="game-rating">
+									<span class="star">★</span>
+									<span class="rating-value">4.3</span>
+									<span class="rating-label">rating</span>
+								</div>
+								<button class="play-button">
+									<span class="play-icon">▶</span>
+									Play Now
+								</button>
+							</div>
+
+							<div class="game-card" data-url="https://shellshock.io">
+								<div class="game-card-header">
+									<h3 class="game-title">Shell Shockers</h3>
+									<span class="game-category">Action</span>
+								</div>
+								<p class="game-description">Egg-themed FPS battle</p>
+								<div class="game-rating">
+									<span class="star">★</span>
+									<span class="rating-value">4.2</span>
+									<span class="rating-label">rating</span>
+								</div>
+								<button class="play-button">
+									<span class="play-icon">▶</span>
+									Play Now
+								</button>
+							</div>
+
+							<div class="game-card" data-url="https://bloons.ninjakiwi.com">
+								<div class="game-card-header">
+									<h3 class="game-title">Bloons TD</h3>
+									<span class="game-category">Strategy</span>
+								</div>
+								<p class="game-description">Tower defense classic</p>
+								<div class="game-rating">
+									<span class="star">★</span>
+									<span class="rating-value">4.7</span>
+									<span class="rating-label">rating</span>
+								</div>
+								<button class="play-button">
+									<span class="play-icon">▶</span>
+									Play Now
+								</button>
+							</div>
+
+							<div class="game-card" data-url="https://basketball-stars.co">
+								<div class="game-card-header">
+									<h3 class="game-title">Basketball Stars</h3>
+									<span class="game-category">Sports</span>
+								</div>
+								<p class="game-description">Basketball arcade game</p>
+								<div class="game-rating">
+									<span class="star">★</span>
+									<span class="rating-value">4.4</span>
+									<span class="rating-label">rating</span>
+								</div>
+								<button class="play-button">
+									<span class="play-icon">▶</span>
+									Play Now
+								</button>
+							</div>
+
+							<div
+								class="game-card"
+								data-url="https://coolmathgames.com/0-run-3"
+							>
+								<div class="game-card-header">
+									<h3 class="game-title">Run 3</h3>
+									<span class="game-category">Arcade</span>
+								</div>
+								<p class="game-description">Space tunnel runner</p>
+								<div class="game-rating">
+									<span class="star">★</span>
+									<span class="rating-value">4.5</span>
+									<span class="rating-label">rating</span>
+								</div>
+								<button class="play-button">
+									<span class="play-icon">▶</span>
+									Play Now
+								</button>
+							</div>
+
+							<div class="game-card" data-url="https://geometry-dash.co">
+								<div class="game-card-header">
+									<h3 class="game-title">Geometry Dash</h3>
+									<span class="game-category">Arcade</span>
+								</div>
+								<p class="game-description">Rhythm-based platformer</p>
+								<div class="game-rating">
+									<span class="star">★</span>
+									<span class="rating-value">4.6</span>
+									<span class="rating-label">rating</span>
+								</div>
+								<button class="play-button">
+									<span class="play-icon">▶</span>
+									Play Now
+								</button>
+							</div>
+
+							<div class="game-card" data-url="https://minesweeper.online">
+								<div class="game-card-header">
+									<h3 class="game-title">Minesweeper</h3>
+									<span class="game-category">Puzzle</span>
+								</div>
+								<p class="game-description">Classic logic puzzle</p>
+								<div class="game-rating">
+									<span class="star">★</span>
+									<span class="rating-value">4.3</span>
+									<span class="rating-label">rating</span>
+								</div>
+								<button class="play-button">
+									<span class="play-icon">▶</span>
+									Play Now
+								</button>
+							</div>
+
+							<div class="game-card" data-url="https://surviv.io">
+								<div class="game-card-header">
+									<h3 class="game-title">Surviv.io</h3>
+									<span class="game-category">Battle Royale</span>
+								</div>
+								<p class="game-description">2D battle royale shooter</p>
+								<div class="game-rating">
+									<span class="star">★</span>
+									<span class="rating-value">4.1</span>
+									<span class="rating-label">rating</span>
+								</div>
+								<button class="play-button">
+									<span class="play-icon">▶</span>
+									Play Now
+								</button>
+							</div>
+
+							<div class="game-card" data-url="https://chess.com">
+								<div class="game-card-header">
+									<h3 class="game-title">Chess</h3>
+									<span class="game-category">Strategy</span>
+								</div>
+								<p class="game-description">Classic strategy board game</p>
+								<div class="game-rating">
+									<span class="star">★</span>
+									<span class="rating-value">4.9</span>
+									<span class="rating-label">rating</span>
+								</div>
+								<button class="play-button">
+									<span class="play-icon">▶</span>
+									Play Now
+								</button>
+							</div>
+
+							<div class="game-card" data-url="https://connect4.gamesolver.org">
+								<div class="game-card-header">
+									<h3 class="game-title">Connect 4</h3>
+									<span class="game-category">Strategy</span>
+								</div>
+								<p class="game-description">Connect four in a row</p>
+								<div class="game-rating">
+									<span class="star">★</span>
+									<span class="rating-value">4.2</span>
+									<span class="rating-label">rating</span>
+								</div>
+								<button class="play-button">
+									<span class="play-icon">▶</span>
+									Play Now
+								</button>
+							</div>
+
+							<div class="game-card" data-url="https://splix.io">
+								<div class="game-card-header">
+									<h3 class="game-title">Splix.io</h3>
+									<span class="game-category">Strategy</span>
+								</div>
+								<p class="game-description">Territory capture game</p>
+								<div class="game-rating">
+									<span class="star">★</span>
+									<span class="rating-value">4.0</span>
+									<span class="rating-label">rating</span>
+								</div>
+								<button class="play-button">
+									<span class="play-icon">▶</span>
+									Play Now
+								</button>
+							</div>
+
+							<div class="game-card" data-url="https://wings.io">
+								<div class="game-card-header">
+									<h3 class="game-title">Wings.io</h3>
+									<span class="game-category">Action</span>
+								</div>
+								<p class="game-description">Airplane combat game</p>
+								<div class="game-rating">
+									<span class="star">★</span>
+									<span class="rating-value">4.1</span>
+									<span class="rating-label">rating</span>
+								</div>
+								<button class="play-button">
+									<span class="play-icon">▶</span>
+									Play Now
+								</button>
+							</div>
+						</div>
+					</div>
+				</section>
+			</div>
+
+			<!-- Apps Section -->
+			<div id="apps-section" class="tab-section" style="display: none">
+				<section class="apps-section">
+					<div class="apps-container">
+						<h2 class="apps-title">Popular Apps</h2>
+						<p class="apps-description">
+							Access your favorite web applications securely through our proxy
+						</p>
+
+						<div class="apps-search-container">
+							<div class="apps-search-bar">
+								<div class="apps-search-icon">
+									<svg
+										viewBox="0 0 24 24"
+										fill="none"
+										xmlns="http://www.w3.org/2000/svg"
+									>
+										<path
+											d="M21 21L16.514 16.506L21 21ZM19 10.5C19 15.194 15.194 19 10.5 19C5.806 19 2 15.194 2 10.5C2 5.806 5.806 2 10.5 2C15.194 2 19 5.806 19 10.5Z"
+											stroke="currentColor"
+											stroke-width="2"
+											stroke-linecap="round"
+											stroke-linejoin="round"
+										/>
+									</svg>
+								</div>
+								<input
+									id="apps-search"
+									type="text"
+									placeholder="Search apps by name, category, or description..."
+									autocomplete="off"
+									spellcheck="false"
+								/>
+								<div
+									class="apps-search-clear"
+									id="apps-search-clear"
+									style="display: none"
+								>
+									<svg
+										viewBox="0 0 24 24"
+										fill="none"
+										xmlns="http://www.w3.org/2000/svg"
+									>
+										<path
+											d="M18 6L6 18M6 6L18 18"
+											stroke="currentColor"
+											stroke-width="2"
+											stroke-linecap="round"
+											stroke-linejoin="round"
+										/>
+									</svg>
+								</div>
+							</div>
+						</div>
+
+						<div class="apps-grid">
+							<div class="app-card" data-url="https://discord.com/app">
+								<div class="app-card-header">
+									<h3 class="app-title">Discord</h3>
+									<span class="app-category">Communication</span>
+								</div>
+								<p class="app-description">
+									Voice, video, and text communication platform
+								</p>
+								<div class="app-rating">
+									<span class="star">★</span>
+									<span class="rating-value">4.8</span>
+									<span class="rating-label">rating</span>
+								</div>
+								<button class="launch-button">
+									<span class="launch-icon">🚀</span>
+									Launch App
+								</button>
+							</div>
+
+							<div class="app-card" data-url="https://web.whatsapp.com">
+								<div class="app-card-header">
+									<h3 class="app-title">WhatsApp Web</h3>
+									<span class="app-category">Communication</span>
+								</div>
+								<p class="app-description">
+									Messaging app for desktop browsers
+								</p>
+								<div class="app-rating">
+									<span class="star">★</span>
+									<span class="rating-value">4.7</span>
+									<span class="rating-label">rating</span>
+								</div>
+								<button class="launch-button">
+									<span class="launch-icon">🚀</span>
+									Launch App
+								</button>
+							</div>
+
+							<div class="app-card" data-url="https://spotify.com/us/player">
+								<div class="app-card-header">
+									<h3 class="app-title">Spotify Web Player</h3>
+									<span class="app-category">Music</span>
+								</div>
+								<p class="app-description">
+									Stream millions of songs and podcasts
+								</p>
+								<div class="app-rating">
+									<span class="star">★</span>
+									<span class="rating-value">4.9</span>
+									<span class="rating-label">rating</span>
+								</div>
+								<button class="launch-button">
+									<span class="launch-icon">���</span>
+									Launch App
+								</button>
+							</div>
+
+							<div class="app-card" data-url="https://netflix.com">
+								<div class="app-card-header">
+									<h3 class="app-title">Netflix</h3>
+									<span class="app-category">Entertainment</span>
+								</div>
+								<p class="app-description">
+									Movies, TV shows, and original content
+								</p>
+								<div class="app-rating">
+									<span class="star">★</span>
+									<span class="rating-value">4.6</span>
+									<span class="rating-label">rating</span>
+								</div>
+								<button class="launch-button">
+									<span class="launch-icon">🚀</span>
+									Launch App
+								</button>
+							</div>
+
+							<div class="app-card" data-url="https://docs.google.com">
+								<div class="app-card-header">
+									<h3 class="app-title">Google Docs</h3>
+									<span class="app-category">Productivity</span>
+								</div>
+								<p class="app-description">
+									Online document editing and collaboration
+								</p>
+								<div class="app-rating">
+									<span class="star">★</span>
+									<span class="rating-value">4.8</span>
+									<span class="rating-label">rating</span>
+								</div>
+								<button class="launch-button">
+									<span class="launch-icon">🚀</span>
+									Launch App
+								</button>
+							</div>
+
+							<div class="app-card" data-url="https://sheets.google.com">
+								<div class="app-card-header">
+									<h3 class="app-title">Google Sheets</h3>
+									<span class="app-category">Productivity</span>
+								</div>
+								<p class="app-description">Online spreadsheet application</p>
+								<div class="app-rating">
+									<span class="star">★</span>
+									<span class="rating-value">4.7</span>
+									<span class="rating-label">rating</span>
+								</div>
+								<button class="launch-button">
+									<span class="launch-icon">🚀</span>
+									Launch App
+								</button>
+							</div>
+
+							<div class="app-card" data-url="https://slides.google.com">
+								<div class="app-card-header">
+									<h3 class="app-title">Google Slides</h3>
+									<span class="app-category">Productivity</span>
+								</div>
+								<p class="app-description">
+									Create and present slide presentations
+								</p>
+								<div class="app-rating">
+									<span class="star">★</span>
+									<span class="rating-value">4.6</span>
+									<span class="rating-label">rating</span>
+								</div>
+								<button class="launch-button">
+									<span class="launch-icon">🚀</span>
+									Launch App
+								</button>
+							</div>
+
+							<div class="app-card" data-url="https://drive.google.com">
+								<div class="app-card-header">
+									<h3 class="app-title">Google Drive</h3>
+									<span class="app-category">Storage</span>
+								</div>
+								<p class="app-description">Cloud storage and file sharing</p>
+								<div class="app-rating">
+									<span class="star">★</span>
+									<span class="rating-value">4.5</span>
+									<span class="rating-label">rating</span>
+								</div>
+								<button class="launch-button">
+									<span class="launch-icon">🚀</span>
+									Launch App
+								</button>
+							</div>
+
+							<div class="app-card" data-url="https://outlook.live.com">
+								<div class="app-card-header">
+									<h3 class="app-title">Outlook</h3>
+									<span class="app-category">Email</span>
+								</div>
+								<p class="app-description">
+									Microsoft's web-based email client
+								</p>
+								<div class="app-rating">
+									<span class="star">★</span>
+									<span class="rating-value">4.4</span>
+									<span class="rating-label">rating</span>
+								</div>
+								<button class="launch-button">
+									<span class="launch-icon">🚀</span>
+									Launch App
+								</button>
+							</div>
+
+							<div class="app-card" data-url="https://gmail.com">
+								<div class="app-card-header">
+									<h3 class="app-title">Gmail</h3>
+									<span class="app-category">Email</span>
+								</div>
+								<p class="app-description">Google's email service</p>
+								<div class="app-rating">
+									<span class="star">★</span>
+									<span class="rating-value">4.8</span>
+									<span class="rating-label">rating</span>
+								</div>
+								<button class="launch-button">
+									<span class="launch-icon">🚀</span>
+									Launch App
+								</button>
+							</div>
+
+							<div class="app-card" data-url="https://canva.com">
+								<div class="app-card-header">
+									<h3 class="app-title">Canva</h3>
+									<span class="app-category">Design</span>
+								</div>
+								<p class="app-description">
+									Graphic design and visual content creation
+								</p>
+								<div class="app-rating">
+									<span class="star">★</span>
+									<span class="rating-value">4.7</span>
+									<span class="rating-label">rating</span>
+								</div>
+								<button class="launch-button">
+									<span class="launch-icon">🚀</span>
+									Launch App
+								</button>
+							</div>
+
+							<div class="app-card" data-url="https://figma.com">
+								<div class="app-card-header">
+									<h3 class="app-title">Figma</h3>
+									<span class="app-category">Design</span>
+								</div>
+								<p class="app-description">
+									Collaborative interface design tool
+								</p>
+								<div class="app-rating">
+									<span class="star">★</span>
+									<span class="rating-value">4.9</span>
+									<span class="rating-label">rating</span>
+								</div>
+								<button class="launch-button">
+									<span class="launch-icon">🚀</span>
+									Launch App
+								</button>
+							</div>
+
+							<div class="app-card" data-url="https://notion.so">
+								<div class="app-card-header">
+									<h3 class="app-title">Notion</h3>
+									<span class="app-category">Productivity</span>
+								</div>
+								<p class="app-description">
+									All-in-one workspace for notes and docs
+								</p>
+								<div class="app-rating">
+									<span class="star">★</span>
+									<span class="rating-value">4.6</span>
+									<span class="rating-label">rating</span>
+								</div>
+								<button class="launch-button">
+									<span class="launch-icon">����</span>
+									Launch App
+								</button>
+							</div>
+
+							<div class="app-card" data-url="https://trello.com">
+								<div class="app-card-header">
+									<h3 class="app-title">Trello</h3>
+									<span class="app-category">Productivity</span>
+								</div>
+								<p class="app-description">Kanban-style project management</p>
+								<div class="app-rating">
+									<span class="star">★</span>
+									<span class="rating-value">4.5</span>
+									<span class="rating-label">rating</span>
+								</div>
+								<button class="launch-button">
+									<span class="launch-icon">🚀</span>
+									Launch App
+								</button>
+							</div>
+
+							<div class="app-card" data-url="https://slack.com">
+								<div class="app-card-header">
+									<h3 class="app-title">Slack</h3>
+									<span class="app-category">Communication</span>
+								</div>
+								<p class="app-description">
+									Team communication and collaboration
+								</p>
+								<div class="app-rating">
+									<span class="star">★</span>
+									<span class="rating-value">4.4</span>
+									<span class="rating-label">rating</span>
+								</div>
+								<button class="launch-button">
+									<span class="launch-icon">🚀</span>
+									Launch App
+								</button>
+							</div>
+
+							<div class="app-card" data-url="https://zoom.us">
+								<div class="app-card-header">
+									<h3 class="app-title">Zoom</h3>
+									<span class="app-category">Communication</span>
+								</div>
+								<p class="app-description">Video conferencing and meetings</p>
+								<div class="app-rating">
+									<span class="star">★</span>
+									<span class="rating-value">4.3</span>
+									<span class="rating-label">rating</span>
+								</div>
+								<button class="launch-button">
+									<span class="launch-icon">🚀</span>
+									Launch App
+								</button>
+							</div>
+
+							<div class="app-card" data-url="https://twitter.com">
+								<div class="app-card-header">
+									<h3 class="app-title">Twitter / X</h3>
+									<span class="app-category">Social</span>
+								</div>
+								<p class="app-description">Social media and news platform</p>
+								<div class="app-rating">
+									<span class="star">★</span>
+									<span class="rating-value">4.2</span>
+									<span class="rating-label">rating</span>
+								</div>
+								<button class="launch-button">
+									<span class="launch-icon">���</span>
+									Launch App
+								</button>
+							</div>
+
+							<div class="app-card" data-url="https://reddit.com">
+								<div class="app-card-header">
+									<h3 class="app-title">Reddit</h3>
+									<span class="app-category">Social</span>
+								</div>
+								<p class="app-description">
+									Online community and discussion platform
+								</p>
+								<div class="app-rating">
+									<span class="star">★</span>
+									<span class="rating-value">4.5</span>
+									<span class="rating-label">rating</span>
+								</div>
+								<button class="launch-button">
+									<span class="launch-icon">🚀</span>
+									Launch App
+								</button>
+							</div>
+
+							<div class="app-card" data-url="https://calendar.google.com">
+								<div class="app-card-header">
+									<h3 class="app-title">Google Calendar</h3>
+									<span class="app-category">Productivity</span>
+								</div>
+								<p class="app-description">
+									Schedule management and event planning
+								</p>
+								<div class="app-rating">
+									<span class="star">★</span>
+									<span class="rating-value">4.6</span>
+									<span class="rating-label">rating</span>
+								</div>
+								<button class="launch-button">
+									<span class="launch-icon">🚀</span>
+									Launch App
+								</button>
+							</div>
+
+							<div class="app-card" data-url="https://photos.google.com">
+								<div class="app-card-header">
+									<h3 class="app-title">Google Photos</h3>
+									<span class="app-category">Storage</span>
+								</div>
+								<p class="app-description">Photo storage and sharing service</p>
+								<div class="app-rating">
+									<span class="star">★</span>
+									<span class="rating-value">4.4</span>
+									<span class="rating-label">rating</span>
+								</div>
+								<button class="launch-button">
+									<span class="launch-icon">🚀</span>
+									Launch App
+								</button>
+							</div>
+						</div>
+					</div>
+				</section>
+			</div>
+
+			<!-- Settings Section -->
+			<div id="settings-section" class="tab-section" style="display: none">
+				<section class="settings-section">
+					<div class="settings-container">
+						<h2 class="settings-title">Settings</h2>
+						<p class="settings-description">
+							Customize your browsing experience and privacy preferences
+						</p>
+
+						<div class="settings-grid">
+							<!-- General Settings -->
+							<div class="settings-category">
+								<h3 class="category-title">
+									<svg
+										viewBox="0 0 24 24"
+										fill="currentColor"
+										xmlns="http://www.w3.org/2000/svg"
+									>
+										<path
+											d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"
+										/>
+									</svg>
+									General
+								</h3>
+
+								<div class="setting-item">
+									<div class="setting-info">
+										<label class="setting-label">Search Engine</label>
+										<p class="setting-description">
+											Choose your default search engine for queries
+										</p>
+									</div>
+									<select id="default-search-engine" class="setting-select">
+										<option value="https://www.google.com/search?q=%s">
+											Google
+										</option>
+										<option value="https://www.bing.com/search?q=%s">
+											Bing
+										</option>
+										<option value="https://duckduckgo.com/?q=%s">
+											DuckDuckGo
+										</option>
+										<option
+											value="https://www.startpage.com/sp/search?query=%s"
+										>
+											Startpage
+										</option>
+										<option value="https://searx.org/?q=%s">Searx</option>
+									</select>
+								</div>
+
+								<div class="setting-item">
+									<div class="setting-info">
+										<label class="setting-label">Homepage</label>
+										<p class="setting-description">Set a custom homepage URL</p>
+									</div>
+									<input
+										id="homepage-url"
+										type="text"
+										class="setting-input"
+										placeholder="https://example.com"
+									/>
+								</div>
+
+								<div class="setting-item">
+									<div class="setting-info">
+										<label class="setting-label">Auto-open Links</label>
+										<p class="setting-description">
+											Automatically open external links in proxy
+										</p>
+									</div>
+									<label class="setting-toggle">
+										<input type="checkbox" id="auto-open-links" checked />
+										<span class="toggle-slider"></span>
+									</label>
+								</div>
+							</div>
+
+							<!-- Safety -->
+							<div class="settings-category">
+								<h3 class="category-title">
+									<svg
+										viewBox="0 0 24 24"
+										fill="currentColor"
+										xmlns="http://www.w3.org/2000/svg"
+									>
+										<path
+											d="M18,8A6,6 0 0,0 12,2A6,6 0 0,0 6,8H4V20H20V8H18M12,4A4,4 0 0,1 16,6V8H8V6A4,4 0 0,1 12,4M12,17A2,2 0 0,1 10,15A2,2 0 0,1 12,13A2,2 0 0,1 14,15A2,2 0 0,1 12,17Z"
+										/>
+									</svg>
+									Safety
+								</h3>
+
+								<div class="setting-item">
+									<div class="setting-info">
+										<label class="setting-label">About:Blank Mode</label>
+										<p class="setting-description">
+											Makes the tab appear as a blank page for stealth browsing
+											with anti-extension protection
+										</p>
+									</div>
+									<label class="setting-toggle">
+										<input type="checkbox" id="aboutblank-mode" />
+										<span class="toggle-slider"></span>
+									</label>
+								</div>
+
+								<div class="setting-item">
+									<div class="setting-info">
+										<label class="setting-label">Anti-GoGuardian</label>
+										<p class="setting-description">
+											Prevents GoGuardian and similar tools from force-closing
+											your tab
+										</p>
+									</div>
+									<label class="setting-toggle">
+										<input type="checkbox" id="anti-goguardian" />
+										<span class="toggle-slider"></span>
+									</label>
+								</div>
+
+								<div class="setting-item">
+									<div class="setting-info">
+										<label class="setting-label">Tab Protection</label>
+										<p class="setting-description">
+											Enables additional protection against tab manipulation
+										</p>
+									</div>
+									<label class="setting-toggle">
+										<input type="checkbox" id="tab-protection" checked />
+										<span class="toggle-slider"></span>
+									</label>
+								</div>
+
+								<div class="setting-item">
+									<div class="setting-info">
+										<label class="setting-label">History Protection</label>
+										<p class="setting-description">
+											Clears browsing history automatically
+										</p>
+									</div>
+									<label class="setting-toggle">
+										<input type="checkbox" id="history-protection" />
+										<span class="toggle-slider"></span>
+									</label>
+								</div>
+							</div>
+
+							<!-- Privacy & Security -->
+							<div class="settings-category">
+								<h3 class="category-title">
+									<svg
+										viewBox="0 0 24 24"
+										fill="currentColor"
+										xmlns="http://www.w3.org/2000/svg"
+									>
+										<path
+											d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"
+										/>
+									</svg>
+									Privacy & Security
+								</h3>
+
+								<div class="setting-item">
+									<div class="setting-info">
+										<label class="setting-label">Block Tracking</label>
+										<p class="setting-description">
+											Block tracking scripts and analytics
+										</p>
+									</div>
+									<label class="setting-toggle">
+										<input type="checkbox" id="block-tracking" checked />
+										<span class="toggle-slider"></span>
+									</label>
+								</div>
+
+								<div class="setting-item">
+									<div class="setting-info">
+										<label class="setting-label">Block Ads</label>
+										<p class="setting-description">
+											Block advertisements and pop-ups
+										</p>
+									</div>
+									<label class="setting-toggle">
+										<input type="checkbox" id="block-ads" checked />
+										<span class="toggle-slider"></span>
+									</label>
+								</div>
+
+								<div class="setting-item">
+									<div class="setting-info">
+										<label class="setting-label">Force HTTPS</label>
+										<p class="setting-description">
+											Automatically redirect to HTTPS when available
+										</p>
+									</div>
+									<label class="setting-toggle">
+										<input type="checkbox" id="force-https" checked />
+										<span class="toggle-slider"></span>
+									</label>
+								</div>
+
+								<div class="setting-item">
+									<div class="setting-info">
+										<label class="setting-label">Clear Data on Exit</label>
+										<p class="setting-description">
+											Clear cookies and data when closing
+										</p>
+									</div>
+									<label class="setting-toggle">
+										<input type="checkbox" id="clear-on-exit" />
+										<span class="toggle-slider"></span>
+									</label>
+								</div>
+							</div>
+
+							<!-- Appearance -->
+							<div class="settings-category">
+								<h3 class="category-title">
+									<svg
+										viewBox="0 0 24 24"
+										fill="currentColor"
+										xmlns="http://www.w3.org/2000/svg"
+									>
+										<path
+											d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9c.83 0 1.5-.67 1.5-1.5 0-.39-.15-.74-.39-1.01-.23-.26-.38-.61-.38-.99 0-.83.67-1.5 1.5-1.5H16c2.76 0 5-2.24 5-5 0-4.42-4.03-8-9-8z"
+										/>
+									</svg>
+									Appearance
+								</h3>
+
+								<div class="setting-item theme-setting">
+									<div class="setting-info">
+										<label class="setting-label">Theme</label>
+										<p class="setting-description">
+											Choose your preferred color theme
+										</p>
+									</div>
+									<div class="theme-controls">
+										<select id="theme-select" class="setting-select">
+											<option value="dark">🌙 Dark Theme</option>
+											<option value="light">��️ Light Theme</option>
+											<option value="blue">💙 Ocean Blue</option>
+											<option value="purple">💜 Purple Galaxy</option>
+											<option value="green">💚 Forest Green</option>
+											<option value="red">❤️ Crimson Red</option>
+											<option value="orange">🧡 Sunset Orange</option>
+											<option value="pink">💖 Rose Pink</option>
+											<option value="cyber">🤖 Cyberpunk</option>
+											<option value="matrix">🔰 Matrix Green</option>
+											<option value="auto">🔄 Auto (System)</option>
+										</select>
+										<button
+											id="theme-preview-btn"
+											class="theme-preview-button"
+											type="button"
+										>
+											<svg
+												viewBox="0 0 24 24"
+												fill="currentColor"
+												xmlns="http://www.w3.org/2000/svg"
+											>
+												<path
+													d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"
+												/>
+											</svg>
+											Preview
+										</button>
+									</div>
+								</div>
+
+								<!-- Theme Preview Grid -->
+								<div class="theme-preview-grid" id="theme-preview-grid">
+									<div class="theme-preview-item" data-theme="dark">
+										<div class="theme-preview-card dark-preview">
+											<div class="preview-header">🌙 Dark</div>
+											<div class="preview-content">
+												<div class="preview-accent"></div>
+												<div class="preview-text"></div>
+											</div>
+										</div>
+									</div>
+									<div class="theme-preview-item" data-theme="light">
+										<div class="theme-preview-card light-preview">
+											<div class="preview-header">☀️ Light</div>
+											<div class="preview-content">
+												<div class="preview-accent"></div>
+												<div class="preview-text"></div>
+											</div>
+										</div>
+									</div>
+									<div class="theme-preview-item" data-theme="blue">
+										<div class="theme-preview-card blue-preview">
+											<div class="preview-header">💙 Ocean</div>
+											<div class="preview-content">
+												<div class="preview-accent"></div>
+												<div class="preview-text"></div>
+											</div>
+										</div>
+									</div>
+									<div class="theme-preview-item" data-theme="purple">
+										<div class="theme-preview-card purple-preview">
+											<div class="preview-header">💜 Galaxy</div>
+											<div class="preview-content">
+												<div class="preview-accent"></div>
+												<div class="preview-text"></div>
+											</div>
+										</div>
+									</div>
+									<div class="theme-preview-item" data-theme="green">
+										<div class="theme-preview-card green-preview">
+											<div class="preview-header">💚 Forest</div>
+											<div class="preview-content">
+												<div class="preview-accent"></div>
+												<div class="preview-text"></div>
+											</div>
+										</div>
+									</div>
+									<div class="theme-preview-item" data-theme="red">
+										<div class="theme-preview-card red-preview">
+											<div class="preview-header">❤️ Crimson</div>
+											<div class="preview-content">
+												<div class="preview-accent"></div>
+												<div class="preview-text"></div>
+											</div>
+										</div>
+									</div>
+									<div class="theme-preview-item" data-theme="orange">
+										<div class="theme-preview-card orange-preview">
+											<div class="preview-header">🧡 Sunset</div>
+											<div class="preview-content">
+												<div class="preview-accent"></div>
+												<div class="preview-text"></div>
+											</div>
+										</div>
+									</div>
+									<div class="theme-preview-item" data-theme="pink">
+										<div class="theme-preview-card pink-preview">
+											<div class="preview-header">💖 Rose</div>
+											<div class="preview-content">
+												<div class="preview-accent"></div>
+												<div class="preview-text"></div>
+											</div>
+										</div>
+									</div>
+									<div class="theme-preview-item" data-theme="cyber">
+										<div class="theme-preview-card cyber-preview">
+											<div class="preview-header">🤖 Cyber</div>
+											<div class="preview-content">
+												<div class="preview-accent"></div>
+												<div class="preview-text"></div>
+											</div>
+										</div>
+									</div>
+									<div class="theme-preview-item" data-theme="matrix">
+										<div class="theme-preview-card matrix-preview">
+											<div class="preview-header">🔰 Matrix</div>
+											<div class="preview-content">
+												<div class="preview-accent"></div>
+												<div class="preview-text"></div>
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<div class="setting-item">
+									<div class="setting-info">
+										<label class="setting-label">Animations</label>
+										<p class="setting-description">
+											Enable smooth animations and transitions
+										</p>
+									</div>
+									<label class="setting-toggle">
+										<input type="checkbox" id="enable-animations" checked />
+										<span class="toggle-slider"></span>
+									</label>
+								</div>
+
+								<div class="setting-item">
+									<div class="setting-info">
+										<label class="setting-label">Compact Mode</label>
+										<p class="setting-description">
+											Use smaller interface elements
+										</p>
+									</div>
+									<label class="setting-toggle">
+										<input type="checkbox" id="compact-mode" />
+										<span class="toggle-slider"></span>
+									</label>
+								</div>
+							</div>
+
+							<!-- Performance -->
+							<div class="settings-category">
+								<h3 class="category-title">
+									<svg
+										viewBox="0 0 24 24"
+										fill="currentColor"
+										xmlns="http://www.w3.org/2000/svg"
+									>
+										<path
+											d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
+										/>
+									</svg>
+									Performance
+								</h3>
+
+								<div class="setting-item">
+									<div class="setting-info">
+										<label class="setting-label">Image Compression</label>
+										<p class="setting-description">
+											Compress images to save bandwidth
+										</p>
+									</div>
+									<label class="setting-toggle">
+										<input type="checkbox" id="image-compression" />
+										<span class="toggle-slider"></span>
+									</label>
+								</div>
+
+								<div class="setting-item">
+									<div class="setting-info">
+										<label class="setting-label">Cache Size</label>
+										<p class="setting-description">
+											Amount of data to cache locally
+										</p>
+									</div>
+									<select id="cache-size" class="setting-select">
+										<option value="small">Small (100MB)</option>
+										<option value="medium" selected>Medium (500MB)</option>
+										<option value="large">Large (1GB)</option>
+										<option value="unlimited">Unlimited</option>
+									</select>
+								</div>
+
+								<div class="setting-item">
+									<div class="setting-info">
+										<label class="setting-label">Preload Links</label>
+										<p class="setting-description">
+											Preload links on hover for faster navigation
+										</p>
+									</div>
+									<label class="setting-toggle">
+										<input type="checkbox" id="preload-links" checked />
+										<span class="toggle-slider"></span>
+									</label>
+								</div>
+							</div>
+
+							<!-- Advanced -->
+							<div class="settings-category">
+								<h3 class="category-title">
+									<svg
+										viewBox="0 0 24 24"
+										fill="currentColor"
+										xmlns="http://www.w3.org/2000/svg"
+									>
+										<path
+											d="M22.7 19l-9.1-9.1c.9-2.3.4-5-1.5-6.9-2-2-5-2.4-7.4-1.3L9 6 6 9 1.6 4.7C.4 7.1.9 10.1 2.9 12.1c1.9 1.9 4.6 2.4 6.9 1.5l9.1 9.1c.4.4 1 .4 1.4 0l2.3-2.3c.5-.4.5-1.1.1-1.4z"
+										/>
+									</svg>
+									Advanced
+								</h3>
+
+								<div class="setting-item">
+									<div class="setting-info">
+										<label class="setting-label">User Agent</label>
+										<p class="setting-description">Custom user agent string</p>
+									</div>
+									<select id="user-agent" class="setting-select">
+										<option value="default">Default</option>
+										<option value="chrome">Chrome (Latest)</option>
+										<option value="firefox">Firefox (Latest)</option>
+										<option value="safari">Safari (Latest)</option>
+										<option value="edge">Edge (Latest)</option>
+										<option value="custom">Custom...</option>
+									</select>
+								</div>
+
+								<div
+									class="setting-item"
+									id="custom-user-agent-item"
+									style="display: none"
+								>
+									<div class="setting-info">
+										<label class="setting-label">Custom User Agent</label>
+										<p class="setting-description">
+											Enter a custom user agent string
+										</p>
+									</div>
+									<input
+										id="custom-user-agent"
+										type="text"
+										class="setting-input"
+										placeholder="Mozilla/5.0..."
+									/>
+								</div>
+
+								<div class="setting-item">
+									<div class="setting-info">
+										<label class="setting-label">JavaScript</label>
+										<p class="setting-description">
+											Enable JavaScript execution
+										</p>
+									</div>
+									<label class="setting-toggle">
+										<input type="checkbox" id="enable-javascript" checked />
+										<span class="toggle-slider"></span>
+									</label>
+								</div>
+
+								<div class="setting-item">
+									<div class="setting-info">
+										<label class="setting-label">WebRTC</label>
+										<p class="setting-description">
+											Allow WebRTC connections (may leak IP)
+										</p>
+									</div>
+									<label class="setting-toggle">
+										<input type="checkbox" id="enable-webrtc" />
+										<span class="toggle-slider"></span>
+									</label>
+								</div>
+							</div>
+						</div>
+
+						<!-- Action Buttons -->
+						<div class="settings-actions">
+							<button id="save-settings" class="settings-btn save-btn">
+								<svg
+									viewBox="0 0 24 24"
+									fill="currentColor"
+									xmlns="http://www.w3.org/2000/svg"
+								>
+									<path
+										d="M17 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V7l-4-4zm-5 16c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3zm3-10H5V5h10v4z"
+									/>
+								</svg>
+								Save Settings
+							</button>
+							<button id="reset-settings" class="settings-btn reset-btn">
+								<svg
+									viewBox="0 0 24 24"
+									fill="currentColor"
+									xmlns="http://www.w3.org/2000/svg"
+								>
+									<path
+										d="M17.65 6.35C16.2 4.9 14.21 4 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08c-.82 2.33-3.04 4-5.65 4-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"
+									/>
+								</svg>
+								Reset to Defaults
+							</button>
+							<button id="clear-data" class="settings-btn clear-btn">
+								<svg
+									viewBox="0 0 24 24"
+									fill="currentColor"
+									xmlns="http://www.w3.org/2000/svg"
+								>
+									<path
+										d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"
+									/>
+								</svg>
+								Clear All Data
+							</button>
+						</div>
+
+						<!-- Settings Info -->
+						<div class="settings-info">
+							<div class="info-item">
+								<strong>Storage Used:</strong>
+								<span id="storage-usage">0 MB</span>
+							</div>
+							<div class="info-item">
+								<strong>Last Backup:</strong>
+								<span id="last-backup">Never</span>
+							</div>
+							<div class="info-item">
+								<strong>Version:</strong>
+								<span>Vortex v2.1.0</span>
+							</div>
+						</div>
+					</div>
+				</section>
+			</div>
+
+			<!-- Tools Section -->
+			<div id="tools-section" class="tab-section" style="display: none">
+				<section class="tools-section">
+					<div class="tools-container">
+						<h2 class="tools-title">Built-in Tools</h2>
+						<p class="tools-description">
+							Useful utilities and extra features to enhance your browsing
+							experience
+						</p>
+
+						<div class="tools-grid">
+							<div class="tool-card active" data-tool="site-checker">
+								<div class="tool-icon">
+									<svg
+										viewBox="0 0 24 24"
+										fill="currentColor"
+										xmlns="http://www.w3.org/2000/svg"
+									>
+										<path
+											d="M12 2L13.09 8.26L22 9L13.09 9.74L12 16L10.91 9.74L2 9L10.91 8.26L12 2Z"
+										/>
+									</svg>
+								</div>
+								<span class="tool-label">Site Checker</span>
+							</div>
+
+							<div class="tool-card" data-tool="dns-tools">
+								<div class="tool-icon">
+									<svg
+										viewBox="0 0 24 24"
+										fill="currentColor"
+										xmlns="http://www.w3.org/2000/svg"
+									>
+										<path
+											d="M8.5 14.5A2.5 2.5 0 0 0 11 12A2.5 2.5 0 0 0 8.5 9.5a2.5 2.5 0 0 0-2.4 3.2c-.8.3-1.6.8-2.1 1.6-.9 1.5-.6 3.4.8 4.7C5.8 19.4 7.2 20 8.5 20c1.3 0 2.7-.6 3.7-1.6 1-1 1.6-2.4 1.6-3.7a5.9 5.9 0 0 0-.3-1.8A2.5 2.5 0 0 0 8.5 14.5zm7.5-9.5c2.8 0 5 2.2 5 5s-2.2 5-5 5-5-2.2-5-5 2.2-5 5-5z"
+										/>
+									</svg>
+								</div>
+								<span class="tool-label">DNS Tools</span>
+							</div>
+
+							<div class="tool-card" data-tool="password-generator">
+								<div class="tool-icon">
+									<svg
+										viewBox="0 0 24 24"
+										fill="currentColor"
+										xmlns="http://www.w3.org/2000/svg"
+									>
+										<path
+											d="M12.65 10A4 4 0 0 0 9 6 4 4 0 0 0 5 10A4 4 0 0 0 9 14C9.55 14 10.08 13.87 10.56 13.63L20.5 23.5L22 22L12.65 10ZM9 12A2 2 0 0 1 7 10A2 2 0 0 1 9 8A2 2 0 0 1 11 10A2 2 0 0 1 9 12Z"
+										/>
+									</svg>
+								</div>
+								<span class="tool-label">Password Generator</span>
+							</div>
+
+							<div class="tool-card" data-tool="filter-bypass">
+								<div class="tool-icon">
+									<svg
+										viewBox="0 0 24 24"
+										fill="currentColor"
+										xmlns="http://www.w3.org/2000/svg"
+									>
+										<path
+											d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
+										/>
+									</svg>
+								</div>
+								<span class="tool-label">Filter Bypass</span>
+							</div>
+
+							<div class="tool-card" data-tool="referrer-control">
+								<div class="tool-icon">
+									<svg
+										viewBox="0 0 24 24"
+										fill="currentColor"
+										xmlns="http://www.w3.org/2000/svg"
+									>
+										<path
+											d="M17 7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h10c2.76 0 5-2.24 5-5s-2.24-5-5-5zM7 15c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3z"
+										/>
+									</svg>
+								</div>
+								<span class="tool-label">Referrer Control</span>
+							</div>
+
+							<div class="tool-card" data-tool="cloaker">
+								<div class="tool-icon">
+									<svg
+										viewBox="0 0 24 24"
+										fill="currentColor"
+										xmlns="http://www.w3.org/2000/svg"
+									>
+										<path
+											d="M1 9l2 2c4.97-4.97 13.03-4.97 18 0l2-2C16.93 2.93 7.07 2.93 1 9zm8 8l3 3 3-3c-1.65-1.66-4.34-1.66-6 0zm-4-4l2 2c2.76-2.76 7.24-2.76 10 0l2-2C15.14 9.14 8.86 9.14 5 13z"
+										/>
+									</svg>
+								</div>
+								<span class="tool-label">Cloaker</span>
+							</div>
+
+							<div class="tool-card" data-tool="search-engine">
+								<div class="tool-icon">
+									<svg
+										viewBox="0 0 24 24"
+										fill="currentColor"
+										xmlns="http://www.w3.org/2000/svg"
+									>
+										<path
+											d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"
+										/>
+									</svg>
+								</div>
+								<span class="tool-label">Search Engine</span>
+							</div>
+
+							<div class="tool-card" data-tool="privacy-check">
+								<div class="tool-icon">
+									<svg
+										viewBox="0 0 24 24"
+										fill="currentColor"
+										xmlns="http://www.w3.org/2000/svg"
+									>
+										<path
+											d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"
+										/>
+									</svg>
+								</div>
+								<span class="tool-label">Privacy Check</span>
+							</div>
+						</div>
+
+						<!-- Tool Interfaces -->
+						<div class="tool-interfaces">
+							<!-- Site Checker -->
+							<div id="site-checker-interface" class="tool-interface active">
+								<h3 class="tool-interface-title">
+									<svg
+										viewBox="0 0 24 24"
+										fill="currentColor"
+										xmlns="http://www.w3.org/2000/svg"
+									>
+										<path
+											d="M12 2L13.09 8.26L22 9L13.09 9.74L12 16L10.91 9.74L2 9L10.91 8.26L12 2Z"
+										/>
+									</svg>
+									Site Checker
+								</h3>
+								<p class="tool-interface-description">
+									Check if websites are accessible and find alternatives
+								</p>
+								<div class="tool-input-container">
+									<input
+										id="site-checker-input"
+										type="text"
+										placeholder="Enter website URL (e.g., wikipedia.org)"
+									/>
+									<button id="site-checker-btn" class="tool-button">
+										Check Website Access
+									</button>
+								</div>
+								<div id="site-checker-result" class="tool-result"></div>
+							</div>
+
+							<!-- DNS Tools -->
+							<div id="dns-tools-interface" class="tool-interface">
+								<h3 class="tool-interface-title">
+									<svg
+										viewBox="0 0 24 24"
+										fill="currentColor"
+										xmlns="http://www.w3.org/2000/svg"
+									>
+										<path
+											d="M8.5 14.5A2.5 2.5 0 0 0 11 12A2.5 2.5 0 0 0 8.5 9.5a2.5 2.5 0 0 0-2.4 3.2c-.8.3-1.6.8-2.1 1.6-.9 1.5-.6 3.4.8 4.7C5.8 19.4 7.2 20 8.5 20c1.3 0 2.7-.6 3.7-1.6 1-1 1.6-2.4 1.6-3.7a5.9 5.9 0 0 0-.3-1.8A2.5 2.5 0 0 0 8.5 14.5zm7.5-9.5c2.8 0 5 2.2 5 5s-2.2 5-5 5-5-2.2-5-5 2.2-5 5-5z"
+										/>
+									</svg>
+									DNS Tools
+								</h3>
+								<p class="tool-interface-description">
+									Lookup DNS records and analyze domain information
+								</p>
+								<div class="tool-input-container">
+									<input
+										id="dns-tools-input"
+										type="text"
+										placeholder="Enter domain name (e.g., google.com)"
+									/>
+									<select id="dns-record-type" class="tool-select">
+										<option value="A">A Record</option>
+										<option value="AAAA">AAAA Record</option>
+										<option value="CNAME">CNAME Record</option>
+										<option value="MX">MX Record</option>
+										<option value="TXT">TXT Record</option>
+										<option value="NS">NS Record</option>
+									</select>
+									<button id="dns-tools-btn" class="tool-button">
+										Lookup DNS
+									</button>
+								</div>
+								<div id="dns-tools-result" class="tool-result"></div>
+							</div>
+
+							<!-- Password Generator -->
+							<div id="password-generator-interface" class="tool-interface">
+								<h3 class="tool-interface-title">
+									<svg
+										viewBox="0 0 24 24"
+										fill="currentColor"
+										xmlns="http://www.w3.org/2000/svg"
+									>
+										<path
+											d="M12.65 10A4 4 0 0 0 9 6 4 4 0 0 0 5 10A4 4 0 0 0 9 14C9.55 14 10.08 13.87 10.56 13.63L20.5 23.5L22 22L12.65 10ZM9 12A2 2 0 0 1 7 10A2 2 0 0 1 9 8A2 2 0 0 1 11 10A2 2 0 0 1 9 12Z"
+										/>
+									</svg>
+									Password Generator
+								</h3>
+								<p class="tool-interface-description">
+									Generate secure, random passwords with customizable options
+									for maximum security
+								</p>
+
+								<div class="password-options">
+									<div class="option-group">
+										<label class="option-label">
+											Password Length: <span id="length-display">16</span>
+										</label>
+										<input
+											type="range"
+											id="password-length"
+											class="length-slider"
+											min="4"
+											max="64"
+											value="16"
+										/>
+									</div>
+
+									<div class="option-group">
+										<div class="checkbox-grid">
+											<label class="checkbox-option">
+												<input type="checkbox" id="include-uppercase" checked />
+												<span class="checkbox-label">Uppercase (A-Z)</span>
+											</label>
+											<label class="checkbox-option">
+												<input type="checkbox" id="include-lowercase" checked />
+												<span class="checkbox-label">Lowercase (a-z)</span>
+											</label>
+											<label class="checkbox-option">
+												<input type="checkbox" id="include-numbers" checked />
+												<span class="checkbox-label">Numbers (0-9)</span>
+											</label>
+											<label class="checkbox-option">
+												<input type="checkbox" id="include-symbols" checked />
+												<span class="checkbox-label">Symbols (!@#$%)</span>
+											</label>
+											<label class="checkbox-option">
+												<input type="checkbox" id="exclude-ambiguous" />
+												<span class="checkbox-label"
+													>Exclude ambiguous (0,O,l,1)</span
+												>
+											</label>
+										</div>
+									</div>
+								</div>
+
+								<div class="tool-input-container">
+									<button
+										id="generate-password-btn"
+										class="tool-button primary"
+									>
+										🔐 Generate Password
+									</button>
+									<button
+										id="copy-password-btn"
+										class="tool-button secondary"
+										disabled
+									>
+										📋 Copy Password
+									</button>
+								</div>
+
+								<div class="password-output">
+									<div class="password-display" id="password-display">
+										Click "Generate Password" to create a secure password
+									</div>
+									<div class="password-strength" id="password-strength"></div>
+								</div>
+
+								<div class="password-tips">
+									<h4 class="tips-title">🛡️ Security Tips:</h4>
+									<ul class="tips-list">
+										<li>Use a unique password for each account</li>
+										<li>Longer passwords are generally more secure</li>
+										<li>Include a mix of characters for best security</li>
+										<li>Consider using a password manager</li>
+										<li>Never share passwords or write them down</li>
+									</ul>
+								</div>
+							</div>
+
+							<!-- Filter Bypass -->
+							<div id="filter-bypass-interface" class="tool-interface">
+								<h3 class="tool-interface-title">
+									<svg
+										viewBox="0 0 24 24"
+										fill="currentColor"
+										xmlns="http://www.w3.org/2000/svg"
+									>
+										<path
+											d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
+										/>
+									</svg>
+									Filter Bypass
+								</h3>
+								<p class="tool-interface-description">
+									Generate alternative URLs to bypass content filters
+								</p>
+								<div class="tool-input-container">
+									<input
+										id="filter-bypass-input"
+										type="text"
+										placeholder="Enter URL to generate bypass alternatives"
+									/>
+									<button id="filter-bypass-btn" class="tool-button">
+										Generate Bypass URLs
+									</button>
+								</div>
+								<div id="filter-bypass-result" class="tool-result"></div>
+							</div>
+
+							<!-- Referrer Control -->
+							<div id="referrer-control-interface" class="tool-interface">
+								<h3 class="tool-interface-title">
+									<svg
+										viewBox="0 0 24 24"
+										fill="currentColor"
+										xmlns="http://www.w3.org/2000/svg"
+									>
+										<path
+											d="M17 7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h10c2.76 0 5-2.24 5-5s-2.24-5-5-5zM7 15c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3z"
+										/>
+									</svg>
+									Referrer Control
+								</h3>
+								<p class="tool-interface-description">
+									Control and customize HTTP referrer headers
+								</p>
+								<div class="tool-input-container">
+									<select id="referrer-policy" class="tool-select">
+										<option value="no-referrer">No Referrer</option>
+										<option value="origin">Origin Only</option>
+										<option value="same-origin">Same Origin</option>
+										<option value="strict-origin">Strict Origin</option>
+										<option value="custom">Custom Referrer</option>
+									</select>
+									<input
+										id="custom-referrer"
+										type="text"
+										placeholder="Custom referrer URL"
+										style="display: none"
+									/>
+									<button id="referrer-control-btn" class="tool-button">
+										Apply Referrer Policy
+									</button>
+								</div>
+								<div id="referrer-control-result" class="tool-result"></div>
+							</div>
+
+							<!-- Cloaker -->
+							<div id="cloaker-interface" class="tool-interface">
+								<h3 class="tool-interface-title">
+									<svg
+										viewBox="0 0 24 24"
+										fill="currentColor"
+										xmlns="http://www.w3.org/2000/svg"
+									>
+										<path
+											d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"
+										/>
+									</svg>
+									Cloaker
+								</h3>
+								<p class="tool-interface-description">
+									Change website title and favicon for privacy
+								</p>
+								<div class="tool-input-container">
+									<div class="cloak-input-group">
+										<label for="website-title" class="cloak-label"
+											>Website Title:</label
+										>
+										<input
+											id="website-title"
+											type="text"
+											placeholder="e.g., Google Classroom, Khan Academy, etc."
+											class="cloak-input"
+										/>
+										<small class="cloak-hint"
+											>This will change the title shown in your browser
+											tab</small
+										>
+									</div>
+
+									<div class="cloak-input-group">
+										<label for="favicon-url" class="cloak-label"
+											>Favicon URL:</label
+										>
+										<input
+											id="favicon-url"
+											type="text"
+											placeholder="https://example.com/favicon.ico"
+											class="cloak-input"
+										/>
+										<small class="cloak-hint"
+											>This will change the icon shown in your browser tab. Use
+											direct image URLs (PNG/ICO work best). Try the presets
+											below if you're having issues.</small
+										>
+									</div>
+
+									<div class="cloak-buttons">
+										<button
+											id="apply-cloaker-btn"
+											class="tool-button cloak-apply"
+										>
+											Apply Cloaker
+										</button>
+										<button
+											id="restore-original-btn"
+											class="tool-button cloak-restore"
+										>
+											Restore Original
+										</button>
+									</div>
+								</div>
+
+								<div class="quick-presets">
+									<h4 class="presets-title">
+										<span class="presets-icon">�����</span>
+										Quick Presets:
+									</h4>
+									<div class="presets-grid">
+										<button
+											class="preset-btn"
+											data-title="Google Classroom"
+											data-favicon="https://ssl.gstatic.com/classroom/favicon.png"
+										>
+											<span class="preset-icon">📚</span>
+											<span class="preset-label">Google Classroom</span>
+										</button>
+										<button
+											class="preset-btn"
+											data-title="Khan Academy"
+											data-favicon="https://cdn.kastatic.org/images/apple-touch-icon-57x57-precomposed.new.png"
+										>
+											<span class="preset-icon">➕</span>
+											<span class="preset-label">Khan Academy</span>
+										</button>
+										<button
+											class="preset-btn"
+											data-title="Google Docs"
+											data-favicon="https://ssl.gstatic.com/docs/documents/images/kix-favicon7.ico"
+										>
+											<span class="preset-icon">📄</span>
+											<span class="preset-label">Google Docs</span>
+										</button>
+										<button
+											class="preset-btn"
+											data-title="Wikipedia"
+											data-favicon="https://en.wikipedia.org/static/favicon/wikipedia.ico"
+										>
+											<span class="preset-icon">📖</span>
+											<span class="preset-label">Wikipedia</span>
+										</button>
+									</div>
+								</div>
+
+								<div class="cloak-warnings">
+									<p class="cloak-warning">
+										<span class="warning-icon">😎</span>
+										Changes the appearance of your browser tab for privacy
+									</p>
+									<p class="cloak-warning">
+										<span class="warning-icon">⚠️</span>
+										Remember to restore when done to avoid confusion
+									</p>
+									<p class="cloak-warning">
+										<span class="warning-icon">🚫</span>
+										Note: Cloaker does not work for about:blank tabs. Use the
+										About:Blank Mode in Settings instead.
+									</p>
+								</div>
+
+								<div id="cloaker-result" class="tool-result"></div>
+							</div>
+
+							<!-- Search Engine -->
+							<div id="search-engine-interface" class="tool-interface">
+								<h3 class="tool-interface-title">
+									<svg
+										viewBox="0 0 24 24"
+										fill="currentColor"
+										xmlns="http://www.w3.org/2000/svg"
+									>
+										<path
+											d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"
+										/>
+									</svg>
+									Search Engine
+								</h3>
+								<p class="tool-interface-description">
+									Search across multiple search engines anonymously
+								</p>
+								<div class="tool-input-container">
+									<input
+										id="search-engine-input"
+										type="text"
+										placeholder="Enter search query"
+									/>
+									<select id="search-provider" class="tool-select">
+										<option value="google">Google</option>
+										<option value="bing">Bing</option>
+										<option value="duckduckgo">DuckDuckGo</option>
+										<option value="startpage">Startpage</option>
+										<option value="searx">Searx</option>
+									</select>
+									<button id="search-engine-btn" class="tool-button">
+										Anonymous Search
+									</button>
+								</div>
+								<div id="search-engine-result" class="tool-result"></div>
+							</div>
+
+							<!-- Privacy Check -->
+							<div id="privacy-check-interface" class="tool-interface">
+								<h3 class="tool-interface-title">
+									<svg
+										viewBox="0 0 24 24"
+										fill="currentColor"
+										xmlns="http://www.w3.org/2000/svg"
+									>
+										<path
+											d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"
+										/>
+									</svg>
+									Privacy Check
+								</h3>
+								<p class="tool-interface-description">
+									Analyze your current privacy and security status
+								</p>
+								<div class="tool-input-container">
+									<button id="privacy-check-btn" class="tool-button">
+										Run Privacy Check
+									</button>
+								</div>
+								<div id="privacy-check-result" class="tool-result"></div>
+							</div>
+						</div>
+					</div>
+				</section>
+			</div>
+		</div>
+
+		<!-- Hidden Frame -->
+		<div id="frame-container" style="display: none">
+			<!-- Loading Overlay -->
+			<div id="loading-overlay" class="loading-overlay">
+				<div class="loading-content">
+					<div class="loading-spinner">
+						<div class="spinner-ring"></div>
+						<div class="spinner-ring"></div>
+						<div class="spinner-ring"></div>
+					</div>
+					<div class="loading-text">
+						<h3 class="loading-title">Loading...</h3>
+						<p class="loading-subtitle" id="loading-subtitle">
+							Connecting through Vortex proxy
+						</p>
+					</div>
+					<div class="loading-progress">
+						<div class="progress-bar">
+							<div class="progress-fill" id="progress-fill"></div>
+						</div>
+						<div class="loading-steps">
+							<span class="step active" id="step-1">Initializing</span>
+							<span class="step" id="step-2">Connecting</span>
+							<span class="step" id="step-3">Loading</span>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Custom Browser Tab System -->
+			<div class="browser-tab-container">
+				<div class="tab-bar">
+					<div class="tab-controls">
+						<button id="tab-back" class="tab-control-btn" title="Go Back">
+							<svg
+								viewBox="0 0 24 24"
+								fill="none"
+								xmlns="http://www.w3.org/2000/svg"
+							>
+								<path
+									d="M19 12H5M12 19L5 12L12 5"
+									stroke="currentColor"
+									stroke-width="2"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+								/>
+							</svg>
+						</button>
+						<button id="tab-forward" class="tab-control-btn" title="Go Forward">
+							<svg
+								viewBox="0 0 24 24"
+								fill="none"
+								xmlns="http://www.w3.org/2000/svg"
+							>
+								<path
+									d="M5 12H19M12 5L19 12L12 19"
+									stroke="currentColor"
+									stroke-width="2"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+								/>
+							</svg>
+						</button>
+						<button id="tab-refresh" class="tab-control-btn" title="Refresh">
+							<svg
+								viewBox="0 0 24 24"
+								fill="none"
+								xmlns="http://www.w3.org/2000/svg"
+							>
+								<path
+									d="M1 4V10H7M23 20V14H17"
+									stroke="currentColor"
+									stroke-width="2"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+								/>
+								<path
+									d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10M3.51 15A9 9 0 0 0 18.36 18.36L23 14"
+									stroke="currentColor"
+									stroke-width="2"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+								/>
+							</svg>
+						</button>
+						<button id="tab-home" class="tab-control-btn" title="Home">
+							<svg
+								viewBox="0 0 24 24"
+								fill="none"
+								xmlns="http://www.w3.org/2000/svg"
+							>
+								<path
+									d="M3 9L12 2L21 9V20A2 2 0 0 1 19 22H5A2 2 0 0 1 3 20V9Z"
+									stroke="currentColor"
+									stroke-width="2"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+								/>
+								<polyline
+									points="9,22 9,12 15,12 15,22"
+									stroke="currentColor"
+									stroke-width="2"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+								/>
+							</svg>
+						</button>
+					</div>
+
+					<div class="tab-info">
+						<div class="tab-url-container" id="tab-url-container">
+							<div class="tab-security-indicator" id="tab-security">
+								<svg
+									viewBox="0 0 24 24"
+									fill="currentColor"
+									xmlns="http://www.w3.org/2000/svg"
+								>
+									<path
+										d="M12 1L3 5V11C3 16.55 6.84 21.74 12 23C17.16 21.74 21 16.55 21 11V5L12 1Z"
+									/>
+								</svg>
+							</div>
+							<input
+								type="text"
+								id="tab-address-input"
+								class="tab-address-input"
+								placeholder="Search or enter URL..."
+							/>
+							<span id="tab-url-display" class="tab-url" style="display: none"
+								>vortex://home</span
+							>
+						</div>
+					</div>
+
+					<div class="tab-actions">
+						<button id="new-tab" class="tab-action-btn" title="New Tab">
+							<svg
+								viewBox="0 0 24 24"
+								fill="none"
+								xmlns="http://www.w3.org/2000/svg"
+							>
+								<line
+									x1="12"
+									y1="5"
+									x2="12"
+									y2="19"
+									stroke="currentColor"
+									stroke-width="2"
+									stroke-linecap="round"
+								/>
+								<line
+									x1="5"
+									y1="12"
+									x2="19"
+									y2="12"
+									stroke="currentColor"
+									stroke-width="2"
+									stroke-linecap="round"
+								/>
+							</svg>
+						</button>
+						<button
+							id="close-frame"
+							class="tab-action-btn tab-close-btn"
+							title="Close Tab"
+						>
+							<svg
+								viewBox="0 0 24 24"
+								fill="none"
+								xmlns="http://www.w3.org/2000/svg"
+							>
+								<path
+									d="M18 6L6 18M6 6L18 18"
+									stroke="currentColor"
+									stroke-width="2"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+								/>
+							</svg>
+						</button>
+					</div>
+				</div>
+			</div>
+
+			<iframe id="uv-frame" class="browser-frame"></iframe>
+		</div>
+	</body>
+</html>
