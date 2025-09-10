@@ -2102,6 +2102,11 @@ document.addEventListener("DOMContentLoaded", () => {
 		info.privacy.referrerPolicy = document.referrerPolicy || "Not set";
 		info.privacy.crossOriginIsolated = window.crossOriginIsolated || false;
 
+		// Redact sensitive network identifiers before returning privacy info
+		info.network.publicIP = "[hidden for privacy]";
+		info.network.localIPs = ["[hidden for privacy]"];
+		info.connection.host = "[redacted]";
+		info.connection.port = "";
 		return info;
 	}
 
