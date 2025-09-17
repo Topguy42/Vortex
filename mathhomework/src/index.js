@@ -13,7 +13,12 @@ import { baremuxPath } from "@mercuryworkshop/bare-mux/node";
 
 const fastify = Fastify({
 	serverFactory: (handler) => {
-		return createServer()
+		const srv = createServer();
+		srv.keepAliveTimeout = 130000;
+		srv.headersTimeout = 140000;
+		srv.requestTimeout = 0;
+		srv.timeout = 0;
+		return srv
 			.on("request", (req, res) => {
 				res.setHeader("Cross-Origin-Opener-Policy", "same-origin");
 				res.setHeader("Cross-Origin-Embedder-Policy", "require-corp");

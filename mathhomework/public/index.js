@@ -19,12 +19,44 @@ const error = document.getElementById("uv-error");
  * @type {HTMLPreElement}
  */
 const errorCode = document.getElementById("uv-error-code");
-const connection = new BareMux.BareMuxConnection("/baremux/worker.js");
+const connection = (typeof window !== "undefined" && window.connection instanceof BareMux.BareMuxConnection)
+	? window.connection
+	: new BareMux.BareMuxConnection("/baremux/worker.js");
 
 // Browser Tab System Variables
 let browserHistory = [];
 let historyIndex = -1;
 let currentUrl = "";
+let keepAliveTimer = null;
+let lastTransportSet = 0;
+
+async function ensureTransport() {
+	try {
+		await registerSW();
+		const wispUrl = (location.protocol === "https:" ? "wss" : "ws") + "://" + location.host + "/wisp/";
+		await connection.setTransport("/epoxy/index.mjs", [{ wisp: wispUrl }]);
+		lastTransportSet = Date.now();
+	} catch (_) {}
+}
+
+function startKeepAlive() {
+	stopKeepAlive();
+	try {
+		keepAliveTimer = setInterval(async () => {
+			await ensureTransport();
+			const ping = "https://www.google.com/generate_204?ts=" + Date.now();
+			const proxyPing = __uv$config.prefix + __uv$config.encodeUrl(ping);
+			fetch(proxyPing, { cache: "no-store", mode: "no-cors" }).catch(() => {});
+		}, 45000);
+	} catch (_) {}
+}
+
+function stopKeepAlive() {
+	if (keepAliveTimer) {
+		clearInterval(keepAliveTimer);
+		keepAliveTimer = null;
+	}
+}
 
 // Navigate to URL through proxy - optimized for speed
 async function navigateToUrl(url, addToHistoryFlag = true, context = "page") {
@@ -68,11 +100,23 @@ async function navigateToUrl(url, addToHistoryFlag = true, context = "page") {
 		frame.onload = () => {
 			hideLoading();
 			updateNavigationButtons();
+			startKeepAlive();
 		};
 
-		frame.onerror = () => {
+		frame.onerror = async () => {
 			hideLoading();
 			console.error("Failed to load:", finalUrl);
+			// Attempt a fast reconnection if the transport dropped
+			try {
+				await registerSW();
+				const wispUrl = (location.protocol === "https:" ? "wss" : "ws") + "://" + location.host + "/wisp/";
+				if ((await connection.getTransport()) !== "/epoxy/index.mjs") {
+					await connection.setTransport("/epoxy/index.mjs", [{ wisp: wispUrl }]);
+				}
+				frame.src = proxyUrl;
+			} catch (e) {
+				// ignore and let user retry
+			}
 		};
 
 		// Fallback timeout to hide loading if load events don't fire
@@ -541,10 +585,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
 	// Refresh page
 	if (tabRefresh) {
-		tabRefresh.addEventListener("click", () => {
+		tabRefresh.addEventListener("click", async () => {
+			await ensureTransport();
 			const frame = document.getElementById("uv-frame");
 			if (frame && frame.src) {
-				// Add a timestamp to force refresh
 				const currentSrc = frame.src;
 				const separator = currentSrc.includes("?") ? "&" : "?";
 				frame.src = currentSrc + separator + "_refresh=" + Date.now();
@@ -568,6 +612,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 	// Close frame functionality
 	function closeFrame() {
+		stopKeepAlive();
 		const frameContainer = document.getElementById("frame-container");
 		const frame = document.getElementById("uv-frame");
 		const loadingOverlay = document.getElementById("loading-overlay");
@@ -713,12 +758,14 @@ document.addEventListener("DOMContentLoaded", () => {
 			// F5 or Ctrl+R for refresh
 			if (event.key === "F5" || (event.ctrlKey && event.key === "r")) {
 				event.preventDefault();
-				const frame = document.getElementById("uv-frame");
-				if (frame && frame.src) {
-					const currentSrc = frame.src;
-					const separator = currentSrc.includes("?") ? "&" : "?";
-					frame.src = currentSrc + separator + "_refresh=" + Date.now();
-				}
+				ensureTransport().finally(() => {
+					const frame = document.getElementById("uv-frame");
+					if (frame && frame.src) {
+						const currentSrc = frame.src;
+						const separator = currentSrc.includes("?") ? "&" : "?";
+						frame.src = currentSrc + separator + "_refresh=" + Date.now();
+					}
+				});
 				return;
 			}
 
