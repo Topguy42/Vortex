@@ -28,6 +28,16 @@ let browserHistory = [];
 let historyIndex = -1;
 let currentUrl = "";
 let keepAliveTimer = null;
+let lastTransportSet = 0;
+
+async function ensureTransport() {
+	try {
+		await registerSW();
+		const wispUrl = (location.protocol === "https:" ? "wss" : "ws") + "://" + location.host + "/wisp/";
+		await connection.setTransport("/epoxy/index.mjs", [{ wisp: wispUrl }]);
+		lastTransportSet = Date.now();
+	} catch (_) {}
+}
 
 function startKeepAlive() {
 	stopKeepAlive();
@@ -3551,7 +3561,7 @@ body {
 			console.log("✅ Full cloaking test completed");
 			return "Check your browser tab - if the favicon changed, it works!";
 		} catch (error) {
-			console.error("�� Full test failed:", error);
+			console.error("❌ Full test failed:", error);
 			return "All methods failed. Check console for details.";
 		}
 	};
