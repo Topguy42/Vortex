@@ -604,6 +604,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 	// Close frame functionality
 	function closeFrame() {
+		stopKeepAlive();
 		const frameContainer = document.getElementById("frame-container");
 		const frame = document.getElementById("uv-frame");
 		const loadingOverlay = document.getElementById("loading-overlay");
@@ -3550,7 +3551,7 @@ body {
 			console.log("✅ Full cloaking test completed");
 			return "Check your browser tab - if the favicon changed, it works!";
 		} catch (error) {
-			console.error("❌ Full test failed:", error);
+			console.error("�� Full test failed:", error);
 			return "All methods failed. Check console for details.";
 		}
 	};
