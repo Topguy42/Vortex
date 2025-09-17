@@ -19,12 +19,36 @@ const error = document.getElementById("uv-error");
  * @type {HTMLPreElement}
  */
 const errorCode = document.getElementById("uv-error-code");
-const connection = new BareMux.BareMuxConnection("/baremux/worker.js");
+const connection = (typeof window !== "undefined" && window.connection instanceof BareMux.BareMuxConnection)
+	? window.connection
+	: new BareMux.BareMuxConnection("/baremux/worker.js");
 
 // Browser Tab System Variables
 let browserHistory = [];
 let historyIndex = -1;
 let currentUrl = "";
+let keepAliveTimer = null;
+
+function startKeepAlive() {
+	stopKeepAlive();
+	try {
+		keepAliveTimer = setInterval(() => {
+			// Lightweight 204 ping to keep proxy/bare connections warm
+			const ping = "https://www.google.com/generate_204?ts=" + Date.now();
+			const proxyPing = __uv$config.prefix + __uv$config.encodeUrl(ping);
+			fetch(proxyPing, { cache: "no-store", mode: "no-cors" }).catch(() => {});
+		}, 45000); // 45s to stay under common 60s idle timeouts
+	} catch (_) {
+		// ignore
+	}
+}
+
+function stopKeepAlive() {
+	if (keepAliveTimer) {
+		clearInterval(keepAliveTimer);
+		keepAliveTimer = null;
+	}
+}
 
 // Navigate to URL through proxy - optimized for speed
 async function navigateToUrl(url, addToHistoryFlag = true, context = "page") {
