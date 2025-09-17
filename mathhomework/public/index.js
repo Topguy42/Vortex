@@ -92,11 +92,23 @@ async function navigateToUrl(url, addToHistoryFlag = true, context = "page") {
 		frame.onload = () => {
 			hideLoading();
 			updateNavigationButtons();
+			startKeepAlive();
 		};
 
-		frame.onerror = () => {
+		frame.onerror = async () => {
 			hideLoading();
 			console.error("Failed to load:", finalUrl);
+			// Attempt a fast reconnection if the transport dropped
+			try {
+				await registerSW();
+				const wispUrl = (location.protocol === "https:" ? "wss" : "ws") + "://" + location.host + "/wisp/";
+				if ((await connection.getTransport()) !== "/epoxy/index.mjs") {
+					await connection.setTransport("/epoxy/index.mjs", [{ wisp: wispUrl }]);
+				}
+				frame.src = proxyUrl;
+			} catch (e) {
+				// ignore and let user retry
+			}
 		};
 
 		// Fallback timeout to hide loading if load events don't fire
