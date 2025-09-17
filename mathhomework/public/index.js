@@ -42,15 +42,13 @@ async function ensureTransport() {
 function startKeepAlive() {
 	stopKeepAlive();
 	try {
-		keepAliveTimer = setInterval(() => {
-			// Lightweight 204 ping to keep proxy/bare connections warm
+		keepAliveTimer = setInterval(async () => {
+			await ensureTransport();
 			const ping = "https://www.google.com/generate_204?ts=" + Date.now();
 			const proxyPing = __uv$config.prefix + __uv$config.encodeUrl(ping);
 			fetch(proxyPing, { cache: "no-store", mode: "no-cors" }).catch(() => {});
-		}, 45000); // 45s to stay under common 60s idle timeouts
-	} catch (_) {
-		// ignore
-	}
+		}, 45000);
+	} catch (_) {}
 }
 
 function stopKeepAlive() {
