@@ -585,10 +585,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
 	// Refresh page
 	if (tabRefresh) {
-		tabRefresh.addEventListener("click", () => {
+		tabRefresh.addEventListener("click", async () => {
+			await ensureTransport();
 			const frame = document.getElementById("uv-frame");
 			if (frame && frame.src) {
-				// Add a timestamp to force refresh
 				const currentSrc = frame.src;
 				const separator = currentSrc.includes("?") ? "&" : "?";
 				frame.src = currentSrc + separator + "_refresh=" + Date.now();
