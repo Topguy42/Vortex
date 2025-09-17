@@ -758,12 +758,14 @@ document.addEventListener("DOMContentLoaded", () => {
 			// F5 or Ctrl+R for refresh
 			if (event.key === "F5" || (event.ctrlKey && event.key === "r")) {
 				event.preventDefault();
-				const frame = document.getElementById("uv-frame");
-				if (frame && frame.src) {
-					const currentSrc = frame.src;
-					const separator = currentSrc.includes("?") ? "&" : "?";
-					frame.src = currentSrc + separator + "_refresh=" + Date.now();
-				}
+				ensureTransport().finally(() => {
+					const frame = document.getElementById("uv-frame");
+					if (frame && frame.src) {
+						const currentSrc = frame.src;
+						const separator = currentSrc.includes("?") ? "&" : "?";
+						frame.src = currentSrc + separator + "_refresh=" + Date.now();
+					}
+				});
 				return;
 			}
 
