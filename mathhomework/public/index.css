@@ -475,7 +475,7 @@ body.light-theme .theme-toggle:hover {
 		linear-gradient(180deg, rgba(255, 255, 255, 0.92) 0%, rgba(255, 255, 255, 0.58) 28%, rgba(255, 255, 255, 0.33) 42%, rgba(255, 255, 255, 0.18) 55%, rgba(0, 0, 0, 0.2) 100%),
 		radial-gradient(120% 150% at 10% 10%, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0) 50%),
 		radial-gradient(120% 150% at 90% 80%, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0) 55%),
-		linear-gradient(180deg, #00ffbf, #00e0a0);
+		linear-gradient(180deg, var(--primary-color), var(--secondary-color));
 	-webkit-background-clip: text;
 	background-clip: text;
 	color: transparent;
@@ -484,6 +484,13 @@ body.light-theme .theme-toggle:hover {
 	-webkit-text-stroke: 0.4px rgba(255, 255, 255, 0.18);
 	background-size: 200% 200%;
 	animation: glassFlow 12s ease-in-out infinite alternate;
+}
+
+/* Light theme adjustments for glass text for contrast */
+body.light-theme .title-glass {
+	-webkit-text-stroke: 0.4px rgba(0, 0, 0, 0.25);
+	opacity: 0.9;
+	text-shadow: 0 6px 22px rgba(0, 0, 0, 0.2), 0 1px 6px rgba(0, 0, 0, 0.12);
 }
 
 @keyframes glassFlow {
@@ -1308,8 +1315,13 @@ body.light-theme .theme-toggle:hover {
 }
 *::-webkit-scrollbar-thumb:hover { background: var(--accent-color); }
 
+/* Theme-specific scrollbar tweaks */
+body.light-theme *::-webkit-scrollbar-thumb { background: var(--glass-border-light); }
+body.light-theme *::-webkit-scrollbar-thumb:hover { background: var(--primary-color); }
+
 /* Firefox */
 :root { scrollbar-color: var(--accent-color) transparent; scrollbar-width: thin; }
+body.light-theme { scrollbar-color: var(--primary-color) transparent; }
 
 /* Hidden Frame */
 #frame-container {
