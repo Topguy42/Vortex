@@ -4511,10 +4511,24 @@ body {
 				"cyber-theme",
 				"matrix-theme"
 			);
+			document.documentElement.classList.remove(
+				"light-theme",
+				"dark-theme",
+				"blue-theme",
+				"purple-theme",
+				"green-theme",
+				"red-theme",
+				"orange-theme",
+				"pink-theme",
+				"cyber-theme",
+				"matrix-theme"
+			);
 
 			// Apply new theme
 			if (theme !== "dark") {
-				document.body.classList.add(`${theme}-theme`);
+				const cls = `${theme}-theme`;
+				document.body.classList.add(cls);
+				document.documentElement.classList.add(cls);
 			}
 
 			// Update theme toggle icon
