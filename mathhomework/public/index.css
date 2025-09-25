@@ -1315,6 +1315,18 @@ body.light-theme .title-glass {
 }
 *::-webkit-scrollbar-thumb:hover { background: var(--accent-color); }
 
+/* Explicitly target root scrollbars */
+html::-webkit-scrollbar, body::-webkit-scrollbar { width: 10px; height: 10px; }
+html::-webkit-scrollbar-track, body::-webkit-scrollbar-track { background: transparent; }
+html::-webkit-scrollbar-thumb, body::-webkit-scrollbar-thumb {
+	background: var(--glass-bg-light);
+	border-radius: 9999px;
+	border: 2px solid transparent;
+	background-clip: padding-box;
+	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 2px 8px var(--glass-shadow);
+}
+html::-webkit-scrollbar-thumb:hover, body::-webkit-scrollbar-thumb:hover { background: var(--accent-color); }
+
 /* Theme-specific scrollbar tweaks */
 body.light-theme *::-webkit-scrollbar-thumb, html.light-theme *::-webkit-scrollbar-thumb { background: var(--glass-border-light); }
 body.light-theme *::-webkit-scrollbar-thumb:hover, html.light-theme *::-webkit-scrollbar-thumb:hover { background: var(--primary-color); }
