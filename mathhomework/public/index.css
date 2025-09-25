@@ -1322,6 +1322,14 @@ body.light-theme *::-webkit-scrollbar-thumb:hover { background: var(--primary-co
 /* Firefox */
 :root { scrollbar-color: var(--accent-color) transparent; scrollbar-width: thin; }
 body.light-theme { scrollbar-color: var(--primary-color) transparent; }
+body.blue-theme { scrollbar-color: var(--accent-color) transparent; }
+body.purple-theme { scrollbar-color: var(--accent-color) transparent; }
+body.green-theme { scrollbar-color: var(--accent-color) transparent; }
+body.red-theme { scrollbar-color: var(--accent-color) transparent; }
+body.orange-theme { scrollbar-color: var(--accent-color) transparent; }
+body.pink-theme { scrollbar-color: var(--accent-color) transparent; }
+body.cyber-theme { scrollbar-color: var(--accent-color) transparent; }
+body.matrix-theme { scrollbar-color: var(--accent-color) transparent; }
 
 /* Hidden Frame */
 #frame-container {
