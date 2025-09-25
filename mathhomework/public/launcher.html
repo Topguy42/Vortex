@@ -25,7 +25,7 @@
         var frame = document.getElementById('proxyFrame');
         var fallback = document.getElementById('fallback');
         // Use absolute origin so this file works from any path on this host
-        frame.src = location.origin + '/';
+        frame.src = '/index.html?from=launcher';
         frame.addEventListener('load', function () { fallback.classList.add('hidden'); });
       })();
     </script>
