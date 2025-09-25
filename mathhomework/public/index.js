@@ -1813,6 +1813,8 @@ document.addEventListener("DOMContentLoaded", () => {
 	}
 
 	async function enableAboutBlankCloaking() {
+		// Skip when embedded in an iframe to prevent navigation loops
+		if (window.self !== window.top) return "Skipped in iframe";
 		console.log("Enabling about:blank cloaking mode");
 
 		// Immediately clear the title and favicon multiple times
@@ -1920,7 +1922,7 @@ document.addEventListener("DOMContentLoaded", () => {
 		// Wait a bit to ensure everything is applied
 		await new Promise((resolve) => setTimeout(resolve, 500));
 
-		return `🕵��� About:Blank Mode Activated!\n\n✅ Page title cleared and locked\n✅ Favicon made completely invisible\n✅ Aggressive title/favicon clearing enabled\n\n😎 Your browser tab now appears completely blank for maximum stealth.\n\n💡 Click the toggle in the top-right corner to hide/show the indicator.\n\n⚠️ Remember to restore original settings when done.`;
+		return `🕵️ About:Blank Mode Activated!\n\n✅ Page title cleared and locked\n✅ Favicon made completely invisible\n✅ Aggressive title/favicon clearing enabled\n\n😎 Your browser tab now appears completely blank for maximum stealth.\n\n💡 Click the toggle in the top-right corner to hide/show the indicator.\n\n⚠️ Remember to restore original settings when done.`;
 	}
 
 	function addAboutBlankToggle() {
