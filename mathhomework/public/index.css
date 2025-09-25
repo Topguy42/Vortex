@@ -1316,20 +1316,29 @@ body.light-theme .title-glass {
 *::-webkit-scrollbar-thumb:hover { background: var(--accent-color); }
 
 /* Theme-specific scrollbar tweaks */
-body.light-theme *::-webkit-scrollbar-thumb { background: var(--glass-border-light); }
-body.light-theme *::-webkit-scrollbar-thumb:hover { background: var(--primary-color); }
+body.light-theme *::-webkit-scrollbar-thumb, html.light-theme *::-webkit-scrollbar-thumb { background: var(--glass-border-light); }
+body.light-theme *::-webkit-scrollbar-thumb:hover, html.light-theme *::-webkit-scrollbar-thumb:hover { background: var(--primary-color); }
+/* Stronger themed thumbs on other themes using accent color */
+html.blue-theme *::-webkit-scrollbar-thumb:hover, body.blue-theme *::-webkit-scrollbar-thumb:hover { background: var(--accent-color); }
+html.purple-theme *::-webkit-scrollbar-thumb:hover, body.purple-theme *::-webkit-scrollbar-thumb:hover { background: var(--accent-color); }
+html.green-theme *::-webkit-scrollbar-thumb:hover, body.green-theme *::-webkit-scrollbar-thumb:hover { background: var(--accent-color); }
+html.red-theme *::-webkit-scrollbar-thumb:hover, body.red-theme *::-webkit-scrollbar-thumb:hover { background: var(--accent-color); }
+html.orange-theme *::-webkit-scrollbar-thumb:hover, body.orange-theme *::-webkit-scrollbar-thumb:hover { background: var(--accent-color); }
+html.pink-theme *::-webkit-scrollbar-thumb:hover, body.pink-theme *::-webkit-scrollbar-thumb:hover { background: var(--accent-color); }
+html.cyber-theme *::-webkit-scrollbar-thumb:hover, body.cyber-theme *::-webkit-scrollbar-thumb:hover { background: var(--accent-color); }
+html.matrix-theme *::-webkit-scrollbar-thumb:hover, body.matrix-theme *::-webkit-scrollbar-thumb:hover { background: var(--accent-color); }
 
 /* Firefox */
 :root { scrollbar-color: var(--accent-color) transparent; scrollbar-width: thin; }
-body.light-theme { scrollbar-color: var(--primary-color) transparent; }
-body.blue-theme { scrollbar-color: var(--accent-color) transparent; }
-body.purple-theme { scrollbar-color: var(--accent-color) transparent; }
-body.green-theme { scrollbar-color: var(--accent-color) transparent; }
-body.red-theme { scrollbar-color: var(--accent-color) transparent; }
-body.orange-theme { scrollbar-color: var(--accent-color) transparent; }
-body.pink-theme { scrollbar-color: var(--accent-color) transparent; }
-body.cyber-theme { scrollbar-color: var(--accent-color) transparent; }
-body.matrix-theme { scrollbar-color: var(--accent-color) transparent; }
+body.light-theme, html.light-theme { scrollbar-color: var(--primary-color) transparent; }
+body.blue-theme, html.blue-theme { scrollbar-color: var(--accent-color) transparent; }
+body.purple-theme, html.purple-theme { scrollbar-color: var(--accent-color) transparent; }
+body.green-theme, html.green-theme { scrollbar-color: var(--accent-color) transparent; }
+body.red-theme, html.red-theme { scrollbar-color: var(--accent-color) transparent; }
+body.orange-theme, html.orange-theme { scrollbar-color: var(--accent-color) transparent; }
+body.pink-theme, html.pink-theme { scrollbar-color: var(--accent-color) transparent; }
+body.cyber-theme, html.cyber-theme { scrollbar-color: var(--accent-color) transparent; }
+body.matrix-theme, html.matrix-theme { scrollbar-color: var(--accent-color) transparent; }
 
 /* Hidden Frame */
 #frame-container {
