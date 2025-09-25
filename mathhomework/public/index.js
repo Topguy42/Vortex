@@ -1920,7 +1920,7 @@ document.addEventListener("DOMContentLoaded", () => {
 		// Wait a bit to ensure everything is applied
 		await new Promise((resolve) => setTimeout(resolve, 500));
 
-		return `🕵️ About:Blank Mode Activated!\n\n✅ Page title cleared and locked\n✅ Favicon made completely invisible\n✅ Aggressive title/favicon clearing enabled\n\n😎 Your browser tab now appears completely blank for maximum stealth.\n\n💡 Click the toggle in the top-right corner to hide/show the indicator.\n\n⚠️ Remember to restore original settings when done.`;
+		return `🕵��� About:Blank Mode Activated!\n\n✅ Page title cleared and locked\n✅ Favicon made completely invisible\n✅ Aggressive title/favicon clearing enabled\n\n😎 Your browser tab now appears completely blank for maximum stealth.\n\n💡 Click the toggle in the top-right corner to hide/show the indicator.\n\n⚠️ Remember to restore original settings when done.`;
 	}
 
 	function addAboutBlankToggle() {
@@ -2855,6 +2855,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
 	// About:blank mode functions
 	function enableAboutBlankMode() {
+		// Skip when embedded to avoid redirect/loop issues in iframes
+		if (window.self !== window.top) return;
 		// Open true about:blank tab
 		const newTab = window.open("about:blank", "_blank");
 
