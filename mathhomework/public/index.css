@@ -93,22 +93,43 @@ body {
 	height: 100%;
 	z-index: -2;
 	overflow: hidden;
+	pointer-events: none;
 	background:
-		radial-gradient(
-			circle at 30% 30%,
-			rgba(0, 212, 170, 0.08) 0%,
-			transparent 60%
-		),
-		radial-gradient(
-			circle at 70% 70%,
-			rgba(0, 206, 201, 0.08) 0%,
-			transparent 60%
-		);
+		radial-gradient(circle at 30% 30%, rgba(0, 212, 170, 0.08) 0%, transparent 60%),
+		radial-gradient(circle at 70% 70%, rgba(0, 206, 201, 0.08) 0%, transparent 60%);
 }
 
-/* Background animation CSS removed for faster loading */
+.background-animation::before,
+.background-animation::after {
+	content: "";
+	position: absolute;
+	width: 60vmax;
+	height: 60vmax;
+	border-radius: 50%;
+	filter: blur(60px);
+	opacity: 0.35;
+	background: radial-gradient(circle, var(--accent-color), transparent 60%);
+	animation: floatBlob 18s ease-in-out infinite;
+}
 
-/* Float animation removed for performance */
+.background-animation::after {
+	width: 45vmax;
+	height: 45vmax;
+	left: auto;
+	right: -15vmax;
+	top: 10vmax;
+	background: radial-gradient(circle, var(--primary-color), transparent 60%);
+	animation-duration: 22s;
+	animation-direction: reverse;
+}
+
+@keyframes floatBlob {
+	0% { transform: translate(-10vmax, -10vmax) scale(1); }
+	50% { transform: translate(5vmax, 5vmax) scale(1.05); }
+	100% { transform: translate(-10vmax, -10vmax) scale(1); }
+}
+
+/* Float animation kept subtle for performance */
 
 /* Top Navigation */
 .top-nav {
@@ -445,6 +466,37 @@ body.light-theme .theme-toggle:hover {
 	font-family: "Arial Black", "Helvetica Neue", Helvetica, Arial, sans-serif;
 	color: var(--primary-color);
 	letter-spacing: -0.02em;
+}
+
+/* Liquid glass text (subtle transparency, dynamic highlights) */
+.title-glass {
+	display: inline;
+	background:
+		linear-gradient(180deg, rgba(255, 255, 255, 0.92) 0%, rgba(255, 255, 255, 0.58) 28%, rgba(255, 255, 255, 0.33) 42%, rgba(255, 255, 255, 0.18) 55%, rgba(0, 0, 0, 0.2) 100%),
+		radial-gradient(120% 150% at 10% 10%, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0) 50%),
+		radial-gradient(120% 150% at 90% 80%, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0) 55%),
+		linear-gradient(180deg, var(--primary-color), var(--secondary-color));
+	-webkit-background-clip: text;
+	background-clip: text;
+	color: transparent;
+	opacity: 0.92;
+	text-shadow: 0 8px 30px rgba(0, 0, 0, 0.25), 0 2px 10px rgba(0, 0, 0, 0.15);
+	-webkit-text-stroke: 0.4px rgba(255, 255, 255, 0.18);
+	background-size: 200% 200%;
+	animation: glassFlow 12s ease-in-out infinite alternate;
+}
+
+/* Light theme adjustments for glass text for contrast */
+body.light-theme .title-glass {
+	-webkit-text-stroke: 0.4px rgba(0, 0, 0, 0.25);
+	opacity: 0.9;
+	text-shadow: 0 6px 22px rgba(0, 0, 0, 0.2), 0 1px 6px rgba(0, 0, 0, 0.12);
+}
+
+@keyframes glassFlow {
+	0% { background-position: 0% 0%; }
+	50% { background-position: 100% 50%; }
+	100% { background-position: 0% 100%; }
 }
 
 .brand-subtitle {
@@ -1249,6 +1301,56 @@ body.light-theme .theme-toggle:hover {
 .launch-icon {
 	font-size: 0.8rem;
 }
+
+/* Custom Scrollbars - applied globally */
+/* WebKit browsers */
+*::-webkit-scrollbar { width: 10px; height: 10px; }
+*::-webkit-scrollbar-track { background: transparent; }
+*::-webkit-scrollbar-thumb {
+	background: var(--glass-bg-light);
+	border-radius: 9999px;
+	border: 2px solid transparent;
+	background-clip: padding-box;
+	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 2px 8px var(--glass-shadow);
+}
+*::-webkit-scrollbar-thumb:hover { background: var(--accent-color); }
+
+/* Explicitly target root scrollbars */
+html::-webkit-scrollbar, body::-webkit-scrollbar { width: 10px; height: 10px; }
+html::-webkit-scrollbar-track, body::-webkit-scrollbar-track { background: transparent; }
+html::-webkit-scrollbar-thumb, body::-webkit-scrollbar-thumb {
+	background: var(--glass-bg-light);
+	border-radius: 9999px;
+	border: 2px solid transparent;
+	background-clip: padding-box;
+	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 2px 8px var(--glass-shadow);
+}
+html::-webkit-scrollbar-thumb:hover, body::-webkit-scrollbar-thumb:hover { background: var(--accent-color); }
+
+/* Theme-specific scrollbar tweaks */
+body.light-theme *::-webkit-scrollbar-thumb, html.light-theme *::-webkit-scrollbar-thumb { background: var(--glass-border-light); }
+body.light-theme *::-webkit-scrollbar-thumb:hover, html.light-theme *::-webkit-scrollbar-thumb:hover { background: var(--primary-color); }
+/* Stronger themed thumbs on other themes using accent color */
+html.blue-theme *::-webkit-scrollbar-thumb:hover, body.blue-theme *::-webkit-scrollbar-thumb:hover { background: var(--accent-color); }
+html.purple-theme *::-webkit-scrollbar-thumb:hover, body.purple-theme *::-webkit-scrollbar-thumb:hover { background: var(--accent-color); }
+html.green-theme *::-webkit-scrollbar-thumb:hover, body.green-theme *::-webkit-scrollbar-thumb:hover { background: var(--accent-color); }
+html.red-theme *::-webkit-scrollbar-thumb:hover, body.red-theme *::-webkit-scrollbar-thumb:hover { background: var(--accent-color); }
+html.orange-theme *::-webkit-scrollbar-thumb:hover, body.orange-theme *::-webkit-scrollbar-thumb:hover { background: var(--accent-color); }
+html.pink-theme *::-webkit-scrollbar-thumb:hover, body.pink-theme *::-webkit-scrollbar-thumb:hover { background: var(--accent-color); }
+html.cyber-theme *::-webkit-scrollbar-thumb:hover, body.cyber-theme *::-webkit-scrollbar-thumb:hover { background: var(--accent-color); }
+html.matrix-theme *::-webkit-scrollbar-thumb:hover, body.matrix-theme *::-webkit-scrollbar-thumb:hover { background: var(--accent-color); }
+
+/* Firefox */
+:root { scrollbar-color: var(--accent-color) transparent; scrollbar-width: thin; }
+body.light-theme, html.light-theme { scrollbar-color: var(--primary-color) transparent; }
+body.blue-theme, html.blue-theme { scrollbar-color: var(--accent-color) transparent; }
+body.purple-theme, html.purple-theme { scrollbar-color: var(--accent-color) transparent; }
+body.green-theme, html.green-theme { scrollbar-color: var(--accent-color) transparent; }
+body.red-theme, html.red-theme { scrollbar-color: var(--accent-color) transparent; }
+body.orange-theme, html.orange-theme { scrollbar-color: var(--accent-color) transparent; }
+body.pink-theme, html.pink-theme { scrollbar-color: var(--accent-color) transparent; }
+body.cyber-theme, html.cyber-theme { scrollbar-color: var(--accent-color) transparent; }
+body.matrix-theme, html.matrix-theme { scrollbar-color: var(--accent-color) transparent; }
 
 /* Hidden Frame */
 #frame-container {

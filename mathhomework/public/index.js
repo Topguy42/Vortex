@@ -1813,6 +1813,8 @@ document.addEventListener("DOMContentLoaded", () => {
 	}
 
 	async function enableAboutBlankCloaking() {
+		// Skip when embedded in an iframe to prevent navigation loops
+		if (window.self !== window.top) return "Skipped in iframe";
 		console.log("Enabling about:blank cloaking mode");
 
 		// Immediately clear the title and favicon multiple times
@@ -2770,20 +2772,23 @@ document.addEventListener("DOMContentLoaded", () => {
 			"cyber-theme",
 			"matrix-theme",
 		];
-		themeClasses.forEach((cls) => document.body.classList.remove(cls));
+		// Remove from both body and html to ensure root scrollbars pick up variables
+		themeClasses.forEach((cls) => {
+			document.body.classList.remove(cls);
+			document.documentElement.classList.remove(cls);
+		});
 
-		// Apply selected theme
+		// Apply selected theme to both body and html (viewport scrollbars use html)
 		if (settings.theme === "auto") {
-			// Check system preference
-			const prefersDark = window.matchMedia(
-				"(prefers-color-scheme: dark)"
-			).matches;
+			const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
 			if (!prefersDark) {
 				document.body.classList.add("light-theme");
+				document.documentElement.classList.add("light-theme");
 			}
 		} else if (settings.theme !== "dark") {
-			// Apply the selected theme (dark is default, no class needed)
-			document.body.classList.add(`${settings.theme}-theme`);
+			const cls = `${settings.theme}-theme`;
+			document.body.classList.add(cls);
+			document.documentElement.classList.add(cls);
 		}
 
 		// Update theme toggle button to match current theme
@@ -2852,6 +2857,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
 	// About:blank mode functions
 	function enableAboutBlankMode() {
+		// Skip when embedded to avoid redirect/loop issues in iframes
+		if (window.self !== window.top) return;
 		// Open true about:blank tab
 		const newTab = window.open("about:blank", "_blank");
 
@@ -4508,10 +4515,24 @@ body {
 				"cyber-theme",
 				"matrix-theme"
 			);
+			document.documentElement.classList.remove(
+				"light-theme",
+				"dark-theme",
+				"blue-theme",
+				"purple-theme",
+				"green-theme",
+				"red-theme",
+				"orange-theme",
+				"pink-theme",
+				"cyber-theme",
+				"matrix-theme"
+			);
 
 			// Apply new theme
 			if (theme !== "dark") {
-				document.body.classList.add(`${theme}-theme`);
+				const cls = `${theme}-theme`;
+				document.body.classList.add(cls);
+				document.documentElement.classList.add(cls);
 			}
 
 			// Update theme toggle icon
